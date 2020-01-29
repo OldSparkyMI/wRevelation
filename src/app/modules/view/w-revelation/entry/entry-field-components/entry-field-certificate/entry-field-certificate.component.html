@@ -1,0 +1,10 @@
+<mat-form-field class="full-width">
+    <mat-label>Certificate</mat-label>
+    <textarea matInput
+            [formControl]="formControl"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
+    <!-- TODO: or file open dialog? -->
+</mat-form-field>

@@ -1,0 +1,22 @@
+<div fxLayout="column" fxFlexFill fxLayoutAlign="start stretch" style="scroll-behavior: smooth;">
+  <wrevelation-menu (fileOpen)="onFileOpen($event)"></wrevelation-menu>
+  <div fxLayout="row">
+      <wrevelation-entries [entries]="entries$ | async" (activeEntry)="onActiveEntry($event)" fxFlex="50%"></wrevelation-entries>
+      <wrevelation-entry fxFlex="50%" [entry]="activeEntry"></wrevelation-entry>
+  </div>
+  <mat-accordion [fxHide]="hasNativeFS" style="margin-top:auto;" (click)="scrollToBottom()">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title color="warn">
+                  Native File System API not available
+              </mat-panel-title>
+              <mat-panel-description>
+                  <mat-icon>info</mat-icon>
+              </mat-panel-description>
+          </mat-expansion-panel-header>
+          The Native File System API is not supported in this browser yet, and wRevelation is running in legacy
+          mode. In legacy mode, saving changes is only possible via download. If you're running Chrome, you can
+          enable the Native File System APIs by enabling the #native-file-system-api flag in chrome://flags.
+      </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,19 @@
+<div class="container-padding full-height">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding [title]="node.type">
+      <button mat-icon-button disabled></button>
+      <mat-icon class="type-icon" [attr.aria-label]="node.icon + 'icon'">{{node.icon}}</mat-icon>
+      <button mat-button (click)="onClick(node)">{{node.name}}</button>
+    </mat-tree-node>
+
+    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+      <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">folder</mat-icon>
+      <button mat-button matTreeNodeToggle>{{node.name}}</button>
+    </mat-tree-node>
+  </mat-tree>
+</div>

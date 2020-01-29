@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <button mat-icon-button fxHide.gt-xs [matMenuTriggerFor]="toolbarMenu" aria-label="open menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #toolbarMenu="matMenu" fxShow fxHide.gt-xs>
+    <ng-container *ngTemplateOutlet="menu; context: {$implicit: 'column'}"></ng-container>
+  </mat-menu>
+  <ng-container *ngTemplateOutlet="menu context: {$implicit: 'row'}" fxHide fxShow.gt-xs></ng-container>
+</mat-toolbar>
+
+<!-- The whole menu -->
+<ng-template #menu let-flowOrder>
+  <div [fxLayout]="flowOrder" fxLayoutAlign="start start">
+    <input #fileInput name="file" (change)="openLegacy(fileInput)" type="file" fxHide>
+    <button mat-button title="open file" (click)="open()">
+      <mat-icon class="textAfterIcon">folder_open</mat-icon> <span fxHide.lt-md fxShow.xs>open</span>
+    </button>
+    <button mat-button [title]="(hasNativeFS ? 'save' : 'download') + ' file'" disabled>
+      <mat-icon class="textAfterIcon">save as</mat-icon> <span fxHide.lt-md
+        fxShow.xs>{{hasNativeFS ? 'save' : 'download'}}</span>
+    </button>
+    <button mat-button [title]="(hasNativeFS ? 'save' : 'download') + ' file as'" disabled>
+      <mat-icon class="textAfterIcon">save_alt</mat-icon> <span fxHide.lt-md
+        fxShow.xs>{{hasNativeFS ? 'save as' : 'download as'}}</span>
+    </button>
+    <button mat-button title="add entry" disabled>
+      <mat-icon class="textAfterIcon">add_circle_outline</mat-icon> <span fxHide.lt-md fxShow.xs>add entry</span>
+    </button>
+    <button mat-button title="add folder" disabled>
+      <mat-icon class="textAfterIcon">folder</mat-icon> <span fxHide.lt-md fxShow.xs>add folder</span>
+    </button>
+    <button mat-button title="delete entry" disabled>
+      <mat-icon class="textAfterIcon">delete</mat-icon> <span fxHide.lt-md fxShow.xs>delete entry</span>
+    </button>
+  </div>
+</ng-template>

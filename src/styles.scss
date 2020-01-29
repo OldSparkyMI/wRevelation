@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+$toolbar-height: 64px;
+$container-padding: 20px;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.full-width {
+  width: 100%;
+}
+
+.container-padding {
+  padding: $container-padding;
+}
+
+// TODO: do not use this!
+.right {
+  text-align: right;
+}
+
+.textAfterIcon {
+  padding-inline-end: 5px;
+}
