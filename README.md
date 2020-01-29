@@ -1,6 +1,6 @@
 # WRevelation
 
-In the current state of the projects files can be opend read only! Saving and adding will be implemented soon.
+In the current state of the projects files can only be opend in read only mode! Saving and adding will be implemented soon.
 
 ## Angular Project
 
