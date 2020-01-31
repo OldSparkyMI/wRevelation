@@ -5,7 +5,9 @@
   <mat-menu #toolbarMenu="matMenu" fxShow fxHide.gt-xs>
     <ng-container *ngTemplateOutlet="menu; context: {$implicit: 'column'}"></ng-container>
   </mat-menu>
-  <ng-container *ngTemplateOutlet="menu context: {$implicit: 'row'}" fxHide fxShow.gt-xs></ng-container>
+  <div fxHide fxShow.gt-xs>
+    <ng-container *ngTemplateOutlet="menu context: {$implicit: 'row'}"></ng-container>
+  </div>
 </mat-toolbar>
 
 <!-- The whole menu -->
