@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, filter, switchMap } from 'rxjs/operators';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
@@ -26,7 +26,8 @@ export class WRevelationComponent {
 
   constructor(
     private dialog: MatDialog,
-    private revelationDataService: RevelationDataService
+    private revelationDataService: RevelationDataService,
+    private matSnackBar: MatSnackBar
   ) { }
 
   /**
@@ -38,9 +39,14 @@ export class WRevelationComponent {
     this.entries$ = this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'open', password: '' } })
       .afterClosed()
       .pipe(
-        filter(passwordDialogData => passwordDialogData.password && file),
+        filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
         switchMap(passwordDialogData => this.revelationDataService.open(file, passwordDialogData.password)),
+        catchError(e => {
+          this.matSnackBar.open('Can\'t decrypt file - invalid password or corrupt file?', null, { duration: 5000 });
+          return EMPTY;
+        })
       );
+    this.activeEntry = null;
   }
 
   onActiveEntry(entry: Entry) {
