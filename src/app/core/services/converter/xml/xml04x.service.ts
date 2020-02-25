@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as pako from 'pako';
+import { EntryType, HumanizedFieldType, RawFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { Entry, EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 import { ConverterUtils } from '../../../utils/converter.utils';
 import { Cryptographer047Service } from '../../cryptographer/cryptographer047.service';
 import { REVELATION_ATTRIBUTE_TYPE, REVELATION_DATA, REVELATION_DATA_VERSION, REVELATION_ENTRY, REVELATION_FIELD, REVELATION_FIELD_ID, REVELATION_VERSION } from './xml04x.const';
-import { RawFieldType, HumanizedFieldType, EntryType } from 'src/app/core/enums/wRevelation.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -113,7 +113,6 @@ export class Xml04xService {
   convertRevelationEntries(version: string, dataVersion: string, revelationEntries: Entry[]) {
     const xmlSerializer = new XMLSerializer();
 
-    // --> create root node somehow
     const root = document.createElement(REVELATION_DATA);
     root.setAttribute(REVELATION_VERSION, version);
     root.setAttribute(REVELATION_DATA_VERSION, dataVersion);
@@ -123,7 +122,7 @@ export class Xml04xService {
     });
 
     // TODO: keep NAMESPACES, if any description is xmlns=... it will be replaced
-    return Xml04xService.XML_PROLOG + xmlSerializer.serializeToString(root).replace(/ xmlns=\"(.*?)\"/g, '');;
+    return Xml04xService.XML_PROLOG + xmlSerializer.serializeToString(root).replace(/ xmlns=\"(.*?)\"/g, '');
   }
 
   createField(fieldId: RawFieldType, value: string): EntryField {
@@ -210,12 +209,12 @@ export class Xml04xService {
   }
 
   private static escapeXmlSpecialChars(content: string) {
-    return content
+    return content ? content
       .replace('<', '&lt;')
       .replace('>', '&gt;')
       .replace('&', '&amp;')
       .replace("'", '&apos;')
-      .replace('"', '&quot;');
+      .replace('"', '&quot;') : content;
   }
 
   private xml2HTMLCollection(xmlContent: string): HTMLCollection {
@@ -243,7 +242,7 @@ export class Xml04xService {
       const level = 0;
       const expandable = false;
       const children = [];
-      const entryElements = element.getElementsByTagName(REVELATION_ENTRY);
+      const entryElements = this.getEntryChildren(element);
       if (entryElements && entryElements.length > 0) {
         for (let i = 0; i < entryElements.length; i++) {
           children.push(this.getEntries(entryElements[i], level + 1));
@@ -254,6 +253,20 @@ export class Xml04xService {
         name, type, icon, description, notes, updated, fields, children, level, expandable
       } as Entry;
     }
+  }
+
+  /**
+   * Get the direct sub entries
+   */
+  private getEntryChildren(element: Element): Element[] {
+    const children = [];
+    for(let i = 0; i < element.childNodes.length; i++) {
+      const node = element.childNodes[i];
+      if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'entry') {
+        children.push(node)
+      }
+    }
+    return children;
   }
 
   private addPadding(a: Uint8Array): Uint8Array {
@@ -285,9 +298,9 @@ export class Xml04xService {
     element.childNodes.forEach((child: Element) => {
       if (child.nodeName === REVELATION_FIELD) {
         fields[child.getAttribute(REVELATION_FIELD_ID)] = {
-            id: RawFieldType[child.getAttribute(REVELATION_FIELD_ID)],
-            key: HumanizedFieldType[child.getAttribute(REVELATION_FIELD_ID)],
-            value: child.textContent 
+          id: RawFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
+          key: HumanizedFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
+          value: child.textContent
         }
       }
     });

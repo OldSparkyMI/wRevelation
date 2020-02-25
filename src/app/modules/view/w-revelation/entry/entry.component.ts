@@ -16,6 +16,7 @@ export class EntryComponent {
   @Input() entry: Entry;
 
   emitChange(value) {
+    // TODO
     console.log('value :', value);
   }
 }

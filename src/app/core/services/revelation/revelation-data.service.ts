@@ -1,11 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ConverterUtils } from '../../utils/converter.utils';
 import { Xml04xService } from '../converter/xml/xml04x.service';
+import { NativeFileSystemApi } from '../../utils/native-file-system-api.utils';
+import { take } from 'rxjs/operators';
+import { Entry } from '../../interfaces/wRevelation.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RevelationDataService {
+
+  static SAVE_OPTIONS = {
+    type: 'saveFile',
+    accepts: [{
+      description: 'wRevelation file',
+      extensions: ['rvl'],
+      mimeTypes: ['binary/octet-stream'],
+    }],
+  };
 
   constructor(
     private xml047Service: Xml04xService
@@ -32,7 +44,37 @@ export class RevelationDataService {
       // This is the default file format in Revelation
       return await this.xml047Service.decrypt(content, password)
     } else {
-      console.log('Unable to open file', file);
+      console.error('Unable to open file', file);
+    }
+  }
+
+  /**
+   * Saves the RevelationDateEntries into a file
+   */
+  async save(revelationData$, file?: any, password?: string) {
+    try {
+      revelationData$
+        .pipe(take(1))
+        .subscribe(async (revelationEntries: Entry[]) => {
+          // the only available storage service is the xml047Service, use this
+          // save this content directly to disk
+          const content = await this.xml047Service.encrypt(revelationEntries, password);
+
+          if (NativeFileSystemApi.hasNativeFS) {
+            // native file system download
+            // Create a writer (request permission if necessary).
+            const writer = await file.createWriter();
+            // Make sure we start with an empty file
+            await writer.truncate(0);
+            await writer.write(0, content);
+            await writer.close();
+          } else {
+            // legacy download
+            throw Error('Not implemented');
+          }
+        });
+    } catch (e) {
+      console.warn(e);
     }
   }
 

@@ -14,14 +14,16 @@
 <ng-template #menu let-flowOrder>
   <div [fxLayout]="flowOrder" fxLayoutAlign="start start">
     <input #fileInput name="file" (change)="openLegacy(fileInput)" type="file" fxHide>
-    <button mat-button title="open file" (click)="open()">
+    <button mat-button (click)="open()" title="open file">
       <mat-icon class="textAfterIcon">folder_open</mat-icon> <span fxHide.lt-md fxShow.xs>open</span>
     </button>
-    <button mat-button [title]="(hasNativeFS ? 'save' : 'download') + ' file'" disabled>
+    <button mat-button (click)="save()" [title]="(hasNativeFS ? 'save' : 'download') + ' file'"
+      [disabled]="!saveSupport">
       <mat-icon class="textAfterIcon">save as</mat-icon> <span fxHide.lt-md
         fxShow.xs>{{hasNativeFS ? 'save' : 'download'}}</span>
     </button>
-    <button mat-button [title]="(hasNativeFS ? 'save' : 'download') + ' file as'" disabled>
+    <button mat-button (click)="saveAs()" [title]="(hasNativeFS ? 'save' : 'download') + ' file as'"
+      [disabled]="!saveSupport">
       <mat-icon class="textAfterIcon">save_alt</mat-icon> <span fxHide.lt-md
         fxShow.xs>{{hasNativeFS ? 'save as' : 'download as'}}</span>
     </button>

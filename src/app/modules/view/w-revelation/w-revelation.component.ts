@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, filter, switchMap } from 'rxjs/operators';
+import { catchError, filter, switchMap, tap, shareReplay } from 'rxjs/operators';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
@@ -44,9 +44,29 @@ export class WRevelationComponent {
         catchError(e => {
           this.matSnackBar.open('Can\'t decrypt file - invalid password or corrupt file?', null, { duration: 5000 });
           return EMPTY;
-        })
+        }),
+        shareReplay({bufferSize: 1, refCount: true}),
       );
     this.activeEntry = null;
+  }
+
+  /**
+   * Retrieves a FileHandle or null (download) to save the current data
+   * But to encrypt we need the password, so retrieve it again!
+   * @param file 
+   */
+  onFileSave(file) {
+    this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'save', password: '' } })
+    .afterClosed()
+    .pipe(
+      filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
+      tap(passwordDialogData => this.revelationDataService.save(this.entries$, file, passwordDialogData.password)),
+      catchError(e => {
+        this.matSnackBar.open('Can\'t save file - please raise an issue?', null, { duration: 5000 });
+        return EMPTY;
+      })
+    )
+    .subscribe();
   }
 
   onActiveEntry(entry: Entry) {

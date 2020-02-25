@@ -4,6 +4,10 @@ In the current state of the projects files can only be opend in read only mode! 
 
 Try it out under: https://oldsparkymi.github.io/wRevelation/
 
+# current state
+
+The project is currently in *pre alpha state*. Always keep a copy of your password file!
+
 ## Angular Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.

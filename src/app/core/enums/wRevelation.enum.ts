@@ -10,8 +10,8 @@ export enum EntryType {
   DOOR = 'door',
   DATABASE = 'database',
   FTP = 'ftp',
-  VNC = 'desktop windows',
-  REMOTEDESKTOP = 'remote desktop'
+  VNC = 'vnc',
+  REMOTEDESKTOP = 'remotedesktop'
 }
 
 export enum RawFieldType {

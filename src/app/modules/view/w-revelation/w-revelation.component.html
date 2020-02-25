@@ -1,5 +1,5 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="start stretch" style="scroll-behavior: smooth;">
-  <wrevelation-menu (fileOpen)="onFileOpen($event)"></wrevelation-menu>
+  <wrevelation-menu (fileOpen)="onFileOpen($event)" (fileSave)="onFileSave($event)" [saveSupport]="((entries$ | async) || []).length"></wrevelation-menu>
   <div fxLayout="row">
       <wrevelation-entries [entries]="entries$ | async" (activeEntry)="onActiveEntry($event)" fxFlex="50%"></wrevelation-entries>
       <wrevelation-entry fxFlex="50%" [entry]="activeEntry"></wrevelation-entry>
