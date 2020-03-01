@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, forwardRef, NgZone } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AbstractStringComponent } from '../abstract-string.component';
 import { take } from 'rxjs/operators';
+import { AbstractComponent } from '../abstract.component';
 
 @Component({
   selector: 'wrevelation-entry-field-description',
@@ -16,7 +16,7 @@ import { take } from 'rxjs/operators';
     }
   ]
 })
-export class EntryFieldDescriptionComponent extends AbstractStringComponent {
+export class EntryFieldDescriptionComponent extends AbstractComponent {
 
   constructor(protected ngZone: NgZone) {
     super()

@@ -28,7 +28,7 @@ export class RevelationDataService {
    * @param file rvl file
    * @param password rvl password
    */
-  async open(file, password: string) {
+  async open(file, password: string): Promise<Entry[]> {
     if (file) {
       // the content to load - that means some encrypted data with header
       const content = new Uint8Array(file.getFile ? await (await file.getFile()).arrayBuffer() : await this.readFileAsync(file) as ArrayBuffer)

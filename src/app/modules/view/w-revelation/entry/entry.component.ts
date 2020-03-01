@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EntryType, RawFieldType } from 'src/app/core/enums/wRevelation.enum';
+import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 
 @Component({
   selector: 'wrevelation-entry',
@@ -14,9 +14,4 @@ export class EntryComponent {
   rawFieldType = RawFieldType;
 
   @Input() entry: Entry;
-
-  emitChange(value) {
-    // TODO
-    console.log('value :', value);
-  }
 }

@@ -66,7 +66,7 @@ export class Xml04xService {
     return content;
   }
 
-  async decrypt(fileContent: Uint8Array, password: string) {
+  async decrypt(fileContent: Uint8Array, password: string): Promise<Entry[]> {
     // Check here that the MAGIC STRING and the VERSION is correct to decode the file content
     if (ConverterUtils.compare(fileContent.subarray(6, 9), Xml04xService.VERSION_0_4_7)) {
       const compressedData = new Uint8Array(await this.cryptographer047Service.decrypt(fileContent, password));

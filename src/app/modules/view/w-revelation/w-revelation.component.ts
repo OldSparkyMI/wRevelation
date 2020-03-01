@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, filter, switchMap, tap, shareReplay } from 'rxjs/operators';
+import { catchError, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
@@ -11,7 +11,6 @@ import { OpenPasswordDialogComponent } from '../password/open-password-dialog/op
   selector: 'wrevelation-w-revelation',
   templateUrl: './w-revelation.component.html',
   styleUrls: ['./w-revelation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WRevelationComponent {
 
@@ -40,12 +39,12 @@ export class WRevelationComponent {
       .afterClosed()
       .pipe(
         filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
-        switchMap(passwordDialogData => this.revelationDataService.open(file, passwordDialogData.password)),
+        switchMap(async passwordDialogData => await this.revelationDataService.open(file, passwordDialogData.password)),
         catchError(e => {
           this.matSnackBar.open('Can\'t decrypt file - invalid password or corrupt file?', null, { duration: 5000 });
           return EMPTY;
         }),
-        shareReplay({bufferSize: 1, refCount: true}),
+        shareReplay({ bufferSize: 1, refCount: true }),
       );
     this.activeEntry = null;
   }
@@ -57,16 +56,16 @@ export class WRevelationComponent {
    */
   onFileSave(file) {
     this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'save', password: '' } })
-    .afterClosed()
-    .pipe(
-      filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
-      tap(passwordDialogData => this.revelationDataService.save(this.entries$, file, passwordDialogData.password)),
-      catchError(e => {
-        this.matSnackBar.open('Can\'t save file - please raise an issue?', null, { duration: 5000 });
-        return EMPTY;
-      })
-    )
-    .subscribe();
+      .afterClosed()
+      .pipe(
+        filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
+        tap(passwordDialogData => this.revelationDataService.save(this.entries$, file, passwordDialogData.password)),
+        catchError(e => {
+          this.matSnackBar.open('Can\'t save file - please raise an issue?', null, { duration: 5000 });
+          return EMPTY;
+        })
+      )
+      .subscribe();
   }
 
   onActiveEntry(entry: Entry) {

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, forwardRef, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AbstractStringComponent } from '../abstract-string.component';
+import { AbstractComponent } from '../abstract.component';
 
 @Component({
   selector: 'wrevelation-entry-field-icon',
@@ -15,6 +15,6 @@ import { AbstractStringComponent } from '../abstract-string.component';
     }
   ]
 })
-export class EntryFieldIconComponent extends AbstractStringComponent {
+export class EntryFieldIconComponent extends AbstractComponent {
 
 }

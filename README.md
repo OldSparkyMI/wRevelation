@@ -4,9 +4,9 @@ In the current state of the projects files can only be opend in read only mode! 
 
 Try it out under: https://oldsparkymi.github.io/wRevelation/
 
-# current state
+## current state
 
-The project is currently in *pre alpha state*. Always keep a copy of your password file!
+The project is currently in *pre alpha state*. Always backup your revelation files before trying wRevelation!
 
 ## Angular Project
 

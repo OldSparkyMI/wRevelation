@@ -1,81 +1,81 @@
 <div *ngIf="entry" fxLayout="column" class="container-padding">
   <wrevelation-entry-field-icon matInput [(value)]="entry.type"></wrevelation-entry-field-icon>
-  <wrevelation-entry-field-name matInput [(value)]="entry[rawFieldType.NAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-name>
+  <wrevelation-entry-field-name matInput [(value)]="entry[rawFieldType.NAME]"></wrevelation-entry-field-name>
   
   <ng-container [ngSwitch]="entry.type">
     <ng-container *ngSwitchCase="entryType.FOLDER">
       <!-- TODO -->
     </ng-container>
     <ng-container *ngSwitchCase="entryType.GENERIC">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.WEBSITE">
-      <wrevelation-entry-field-url matInput [(value)]="entry.fields[rawFieldType.GENERIC_URL]" (valueChange)="emitChange($event)"></wrevelation-entry-field-url>
-      <wrevelation-entry-field-email matInput [(value)]="entry.fields[rawFieldType.GENERIC_EMAIL]" (valueChange)="emitChange($event)"></wrevelation-entry-field-email>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-url matInput [(value)]="entry.fields[rawFieldType.GENERIC_URL]"></wrevelation-entry-field-url>
+      <wrevelation-entry-field-email matInput [(value)]="entry.fields[rawFieldType.GENERIC_EMAIL]"></wrevelation-entry-field-email>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.PHONE">
-      <wrevelation-entry-field-phone-phonenumber matInput [(value)]="entry.fields[rawFieldType.PHONE_PHONENUMBER]" (valueChange)="emitChange($event)"></wrevelation-entry-field-phone-phonenumber>
-      <wrevelation-entry-field-pin matInput [(value)]="entry.fields[rawFieldType.GENERIC_PIN]" (valueChange)="emitChange($event)"></wrevelation-entry-field-pin>
+      <wrevelation-entry-field-phone-phonenumber matInput [(value)]="entry.fields[rawFieldType.PHONE_PHONENUMBER]"></wrevelation-entry-field-phone-phonenumber>
+      <wrevelation-entry-field-pin matInput [(value)]="entry.fields[rawFieldType.GENERIC_PIN]"></wrevelation-entry-field-pin>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.CRYPTOKEY">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-certificate matInput [(value)]="entry.fields[rawFieldType.GENERIC_CERTIFICATE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-certificate>
-      <wrevelation-entry-field-keyfile matInput [(value)]="entry.fields[rawFieldType.GENERIC_KEYFILE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-keyfile>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-certificate matInput [(value)]="entry.fields[rawFieldType.GENERIC_CERTIFICATE]"></wrevelation-entry-field-certificate>
+      <wrevelation-entry-field-keyfile matInput [(value)]="entry.fields[rawFieldType.GENERIC_KEYFILE]"></wrevelation-entry-field-keyfile>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.EMAIL">
-      <wrevelation-entry-field-email matInput [(value)]="entry.fields[rawFieldType.GENERIC_EMAIL]" (valueChange)="emitChange($event)"></wrevelation-entry-field-email>
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-email matInput [(value)]="entry.fields[rawFieldType.GENERIC_EMAIL]"></wrevelation-entry-field-email>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.CREDITCARD">
-      <wrevelation-entry-field-creditcard-cardtype matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CARDTYPE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-creditcard-cardtype>
-      <wrevelation-entry-field-creditcard-cardnumber matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CARDNUMBER]" (valueChange)="emitChange($event)"></wrevelation-entry-field-creditcard-cardnumber>
-      <wrevelation-entry-field-creditcard-expirydate matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_EXPIRYDATE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-creditcard-expirydate>
-      <wrevelation-entry-field-creditcard-ccv matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CCV]" (valueChange)="emitChange($event)"></wrevelation-entry-field-creditcard-ccv>
-      <wrevelation-entry-field-pin matInput [(value)]="entry.fields[rawFieldType.GENERIC_PIN]" (valueChange)="emitChange($event)"></wrevelation-entry-field-pin>
+      <wrevelation-entry-field-creditcard-cardtype matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CARDTYPE]"></wrevelation-entry-field-creditcard-cardtype>
+      <wrevelation-entry-field-creditcard-cardnumber matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CARDNUMBER]"></wrevelation-entry-field-creditcard-cardnumber>
+      <wrevelation-entry-field-creditcard-expirydate matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_EXPIRYDATE]"></wrevelation-entry-field-creditcard-expirydate>
+      <wrevelation-entry-field-creditcard-ccv matInput [(value)]="entry.fields[rawFieldType.CREDITCARD_CCV]"></wrevelation-entry-field-creditcard-ccv>
+      <wrevelation-entry-field-pin matInput [(value)]="entry.fields[rawFieldType.GENERIC_PIN]"></wrevelation-entry-field-pin>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.SHELL">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-domain matInput [(value)]="entry.fields[rawFieldType.GENERIC_DOMAIN]" (valueChange)="emitChange($event)"></wrevelation-entry-field-domain>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-domain matInput [(value)]="entry.fields[rawFieldType.GENERIC_DOMAIN]"></wrevelation-entry-field-domain>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.DOOR">
-      <wrevelation-entry-field-location matInput [(value)]="entry.fields[rawFieldType.GENERIC_LOCATION]" (valueChange)="emitChange($event)"></wrevelation-entry-field-location>
-      <wrevelation-entry-field-code matInput [(value)]="entry.fields[rawFieldType.GENERIC_CODE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-code>
+      <wrevelation-entry-field-location matInput [(value)]="entry.fields[rawFieldType.GENERIC_LOCATION]"></wrevelation-entry-field-location>
+      <wrevelation-entry-field-code matInput [(value)]="entry.fields[rawFieldType.GENERIC_CODE]"></wrevelation-entry-field-code>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.DATABASE">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
-      <wrevelation-entry-field-database matInput [(value)]="entry.fields[rawFieldType.GENERIC_DATABASE]" (valueChange)="emitChange($event)"></wrevelation-entry-field-database>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-database matInput [(value)]="entry.fields[rawFieldType.GENERIC_DATABASE]"></wrevelation-entry-field-database>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.FTP">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]" (valueChange)="emitChange($event)"></wrevelation-entry-field-port>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]"></wrevelation-entry-field-port>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.VNC">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]" (valueChange)="emitChange($event)"></wrevelation-entry-field-port>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]"></wrevelation-entry-field-port>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
     <ng-container *ngSwitchCase="entryType.REMOTEDESKTOP">
-      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-hostname>
-      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]" (valueChange)="emitChange($event)"></wrevelation-entry-field-port>
-      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]" (valueChange)="emitChange($event)"></wrevelation-entry-field-username>
-      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]" (valueChange)="emitChange($event)"></wrevelation-entry-field-password>
+      <wrevelation-entry-field-hostname matInput [(value)]="entry.fields[rawFieldType.GENERIC_HOSTNAME]"></wrevelation-entry-field-hostname>
+      <wrevelation-entry-field-port matInput [(value)]="entry.fields[rawFieldType.GENERIC_PORT]"></wrevelation-entry-field-port>
+      <wrevelation-entry-field-username matInput [(value)]="entry.fields[rawFieldType.GENERIC_USERNAME]"></wrevelation-entry-field-username>
+      <wrevelation-entry-field-password matInput [(value)]="entry.fields[rawFieldType.GENERIC_PASSWORD]"></wrevelation-entry-field-password>
     </ng-container>
   </ng-container>
   
-  <wrevelation-entry-field-description matInput [(value)]="entry[rawFieldType.DESCRIPTION]" (valueChange)="emitChange($event)"></wrevelation-entry-field-description>
-  <wrevelation-entry-field-notes matInput [(value)]="entry[rawFieldType.NOTES]" (valueChange)="emitChange($event)"></wrevelation-entry-field-notes>
+  <wrevelation-entry-field-description matInput [(value)]="entry[rawFieldType.DESCRIPTION]"></wrevelation-entry-field-description>
+  <wrevelation-entry-field-notes matInput [(value)]="entry[rawFieldType.NOTES]"></wrevelation-entry-field-notes>
 </div>

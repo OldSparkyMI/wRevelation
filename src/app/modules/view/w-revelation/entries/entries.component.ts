@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material';
 import { of } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
@@ -8,7 +8,6 @@ import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
   selector: 'wrevelation-entries',
   templateUrl: './entries.component.html',
   styleUrls: ['./entries.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntriesComponent {
 
@@ -52,18 +51,9 @@ export class EntriesComponent {
 
   /** Transform the data to something the tree can read. */
   private transformer(node: Entry, level: number): Entry {
-    return {
-      name: node.name,
-      type: node.type,
-      icon: node.icon,
-      level: level,
-      children: node.children,
-      description: node.description,
-      fields: node.fields,
-      notes: node.notes,
-      updated: node.updated,
-      expandable: node.children.length > 0
-    };
+    node.level = level;
+    node.expandable = node.children.length > 0
+    return node;
   }
 
   /** Get whether the node has children or not. */

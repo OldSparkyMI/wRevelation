@@ -1,22 +1,24 @@
-import { Input, Output } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Input, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { HumanizedFieldType } from 'src/app/core/enums/wRevelation.enum';
+import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 
 export abstract class AbstractComponent {
 
-  abstract value: any;
   humanizedFieldType = HumanizedFieldType;
-  formControl: FormControl;
+  formControl: FormControl = new FormControl();
 
-  @Input() disabled;
-  @Output() valueChange = new Observable<any>();
+  @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
 
-  constructor() {
-    this.formControl = new FormControl({ value: '', disabled: this.disabled });
+  @Input()
+  set value(value: EntryField | string) {
+    if (value) {
+      this.formControl.setValue(typeof value === 'string' ? value : value.value, { emitEvent: false });
+    }
   }
-
-  writeValue(value: any): void {
-    this.value = value;
+  get value(): EntryField | string {
+    return this.formControl.value;
   }
+  @Output() valueChange = this.formControl.valueChanges
 }
