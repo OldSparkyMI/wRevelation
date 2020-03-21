@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MaterialModule } from 'src/app/modules/angular-material/material.modules';
 import { EntryFieldDescriptionComponent } from './entry-field-description/entry-field-description.component';

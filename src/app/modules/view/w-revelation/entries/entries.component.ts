@@ -1,6 +1,6 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';

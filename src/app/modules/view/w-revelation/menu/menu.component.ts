@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { MatInput } from '@angular/material';
+import { MatInput } from '@angular/material/input';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
 
@@ -36,7 +36,7 @@ export class MenuComponent {
   @Output() fileSave: EventEmitter<any> = new EventEmitter();  // File | FileHandle
 
   /** the <input type="file" element from the menu-raw.component.html file */
-  @ViewChild('fileInput', { static: false }) fileInputElement: ElementRef<MatInput>;
+  @ViewChild('fileInput') fileInputElement: ElementRef<MatInput>;
 
   /**
    * Opens a FileChooseDialog

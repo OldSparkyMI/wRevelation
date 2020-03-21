@@ -1,5 +1,5 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Input, Output, ViewChild } from '@angular/core';
+import { Input, Output, ViewChild, Directive } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HumanizedFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
@@ -9,7 +9,7 @@ export abstract class AbstractComponent {
   humanizedFieldType = HumanizedFieldType;
   formControl: FormControl = new FormControl();
 
-  @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   @Input()
   set value(value: EntryField | string) {
