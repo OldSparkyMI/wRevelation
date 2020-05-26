@@ -48,4 +48,5 @@ Thumbs.db
 # private project files
 /TODO
 /build.sh
+/build-localhost.sh
 /upgrade.sh
