@@ -23,7 +23,7 @@ export class EntryFieldCertificateComponent extends AbstractEntryDataFieldCompon
   protected KEY = HumanizedFieldType.GENERIC_CERTIFICATE;
 
   constructor(protected ngZone: NgZone) {
-    super()
+    super();
   }
 
   triggerResize() {

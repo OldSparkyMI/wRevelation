@@ -23,7 +23,7 @@ export class MenuComponent {
   /**
    * If enabled, the save and save as button are clickable
    */
-  @Input() saveSupport: boolean = false;
+  @Input() saveSupport = false;
 
   /**
    * Emits the file from the file open event -> if the user clicked on "open" and selected a file
@@ -40,7 +40,7 @@ export class MenuComponent {
 
   /**
    * Opens a FileChooseDialog
-   * 
+   *
    * Legacy: click on <input type="file" ...
    * NativeFS: window.chooseFileSystemEntries();
    */
@@ -49,8 +49,8 @@ export class MenuComponent {
       // open file with the browsers native file api
       (window as any).chooseFileSystemEntries().then(fileHandle => {
         this.fileHandle = fileHandle;
-        this.fileOpen.emit(fileHandle)
-      })
+        this.fileOpen.emit(fileHandle);
+      });
     } else {
       // open lagacy way via hidden: <input type="file" />
       (this.fileInputElement.nativeElement as any).click();
@@ -59,7 +59,7 @@ export class MenuComponent {
 
   /**
    * Opens a file in legacy mode
-   * This function is called at "onChange" on <input type="file" 
+   * This function is called at "onChange" on <input type="file" ...
    * @param fileInput the html input element
    */
   openLegacy(fileInput) {
@@ -71,7 +71,7 @@ export class MenuComponent {
   /**
    * Saves the revelation data to a file
    * Handles legacy with the saveAs fallback and handles the native file browser api
-   * 
+   *
    * Exports the fileHandle to the parent component
    */
   save() {
@@ -85,7 +85,7 @@ export class MenuComponent {
   /**
    * Saves the revelation data to a user defined file
    * Handles legacy due providing no file handle or lets the user chooses a new file handle
-   * 
+   *
    * Exports the fileHandle to the parent component
    */
   saveAs() {

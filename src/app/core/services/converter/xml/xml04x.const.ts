@@ -11,5 +11,3 @@ export const REVELATION_FIELD_UPDATED = 'updated';
 export const REVELATION_FIELD_NOTES = 'notes';
 export const REVELATION_FIELD_ID = 'id';
 export const REVELATION_FIELD_GENERIC = 'generic';
-
-  

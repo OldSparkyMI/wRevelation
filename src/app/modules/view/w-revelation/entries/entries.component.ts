@@ -46,13 +46,13 @@ export class EntriesComponent {
   }
 
   onClick(activeEntry) {
-    this.activeEntry.next(activeEntry)
+    this.activeEntry.next(activeEntry);
   }
 
   /** Transform the data to something the tree can read. */
   private transformer(node: Entry, level: number): Entry {
     node.level = level;
-    node.expandable = node.children.length > 0
+    node.expandable = node.children.length > 0;
     return node;
   }
 

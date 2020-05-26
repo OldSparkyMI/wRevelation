@@ -19,7 +19,7 @@ import { AbstractComponent } from '../abstract.component';
 export class EntryFieldDescriptionComponent extends AbstractComponent {
 
   constructor(protected ngZone: NgZone) {
-    super()
+    super();
   }
 
   triggerResize() {

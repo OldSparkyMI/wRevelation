@@ -19,7 +19,7 @@ export class WRevelationComponent {
   hasNativeFS = NativeFileSystemApi.hasNativeFS;
 
   /** all the revelation entries ==> the data of the application */
-  entries$: Observable<Entry[]>
+  entries$: Observable<Entry[]>;
 
   /** currently there is only one active entry possible */
   activeEntry: Entry;
@@ -53,7 +53,6 @@ export class WRevelationComponent {
   /**
    * Retrieves a FileHandle or null (download) to save the current data
    * But to encrypt we need the password, so retrieve it again!
-   * @param file 
    */
   onFileSave(file) {
     this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'save', password: '' } })
@@ -75,7 +74,7 @@ export class WRevelationComponent {
 
   scrollToBottom() {
     setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight)
+      window.scrollTo(0, document.body.scrollHeight);
     }, 500);
   }
 

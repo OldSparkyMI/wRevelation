@@ -20,5 +20,5 @@ export abstract class AbstractComponent {
   get value(): EntryField | string {
     return this.formControl.value;
   }
-  @Output() valueChange = this.formControl.valueChanges
+  @Output() valueChange = this.formControl.valueChanges;
 }

@@ -26,7 +26,7 @@ export class Cryptographer047Service {
       iv,
       aesKey,
       encryptedData
-    )
+    );
   }
 
   /**
@@ -47,11 +47,11 @@ export class Cryptographer047Service {
 
   private getBaseKey(password: Uint8Array): PromiseLike<CryptoKey> {
     return crypto.subtle.importKey(
-      "raw",
+      'raw',
       password,
       Cryptographer047Service.KEY_DERIVATION_FUNCTION,
       false,
-      ["deriveKey"]
+      ['deriveKey']
     );
   }
 
@@ -63,9 +63,9 @@ export class Cryptographer047Service {
       hash: Cryptographer047Service.HASH_FUNCTION
     },
       baseKey,
-      { "name": Cryptographer047Service.ENCRYPTION_FUNCTION, "length": 256 },
+      { name: Cryptographer047Service.ENCRYPTION_FUNCTION, length: 256 },
       true,
-      ["encrypt", "decrypt"]
+      ['encrypt', 'decrypt']
     );
   }
 
@@ -74,15 +74,14 @@ export class Cryptographer047Service {
       { name: Cryptographer047Service.ENCRYPTION_FUNCTION, iv },
       aesKey,
       content
-    )
+    );
   }
 
-  private async decryptData(iv: Uint8Array, aesKey: CryptoKey, content: Uint8Array) {   
-
+  private async decryptData(iv: Uint8Array, aesKey: CryptoKey, content: Uint8Array) {
     return window.crypto.subtle.decrypt(
       { name: Cryptographer047Service.ENCRYPTION_FUNCTION, iv },
       aesKey,
       content
-    )
+    );
   }
 }

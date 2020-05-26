@@ -26,9 +26,18 @@ export class Xml04xService {
   /**
    * The xml header - needed for writing
    */
-  private static readonly XML_PROLOG = '<?xml version="1.0" encoding="utf-8" ?>'
+  private static readonly XML_PROLOG = '<?xml version="1.0" encoding="utf-8" ?>';
 
   private textDecoder: TextDecoder = new TextDecoder('utf-8');
+
+  private static escapeXmlSpecialChars(content: string) {
+    return content ? content
+      .replace('<', '&lt;')
+      .replace('>', '&gt;')
+      .replace('&', '&amp;')
+      .replace('\'', '&apos;')
+      .replace('"', '&quot;') : content;
+  }
 
   constructor(
     private cryptographer047Service: Cryptographer047Service,
@@ -78,7 +87,7 @@ export class Xml04xService {
         const xmlContent = String.fromCharCode.apply(null, pako.inflate(zipContent));
 
         // provide data & metadata to the main application service
-        const htmlCollection: HTMLCollection = this.xml2HTMLCollection(xmlContent)
+        const htmlCollection: HTMLCollection = this.xml2HTMLCollection(xmlContent);
         if (htmlCollection && htmlCollection.item(0)) {
           return this.getRevelationEntries(htmlCollection.item(0));
         } else {
@@ -97,6 +106,7 @@ export class Xml04xService {
   getRevelationEntries(revelationData: Element): Entry[] {
     const matTreeResult: Entry[] = [];
     if (revelationData && revelationData.hasChildNodes()) { // unique item only on revelationdata root element
+      // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < revelationData.childNodes.length; i++) {
         const childElement: ChildNode = revelationData.childNodes[i];
         if (childElement && childElement.nodeType === Node.ELEMENT_NODE) {
@@ -141,9 +151,9 @@ export class Xml04xService {
       case EntryType.FOLDER:
         return 'folder';
       case EntryType.GENERIC:
-        return 'description'
+        return 'description';
       case EntryType.WEBSITE:
-        return 'web'
+        return 'web';
       case EntryType.PHONE:
         return 'smartphone';
       case EntryType.CRYPTOKEY:
@@ -151,7 +161,7 @@ export class Xml04xService {
       case EntryType.EMAIL:
         return 'email';
       case EntryType.CREDITCARD:
-        return 'credit_card'
+        return 'credit_card';
       case EntryType.SHELL:
         return 'computer';
       case EntryType.DOOR:
@@ -171,10 +181,9 @@ export class Xml04xService {
 
   /**
    * Converts a RevelationEntry into xml
-   * @param revelationEntry 
    */
   private revelationEntry2Xml(revelationEntry: Entry): Element {
-    const entry = document.createElement(REVELATION_ENTRY)
+    const entry = document.createElement(REVELATION_ENTRY);
     entry.setAttribute(REVELATION_ATTRIBUTE_TYPE, revelationEntry.type);
 
     const name = document.createElement(RawFieldType.NAME);
@@ -194,11 +203,13 @@ export class Xml04xService {
     entry.appendChild(updated);
     entry.appendChild(notes);
 
-    for (let revelationField in revelationEntry.fields) {
-      const field = document.createElement(REVELATION_FIELD);
-      field.setAttribute(REVELATION_FIELD_ID, revelationEntry.fields[revelationField].id.replace('_', '-'));
-      field.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.fields[revelationField].value);
-      entry.appendChild(field);
+    for (const revelationField in revelationEntry.fields) {
+      if (revelationField) {
+        const field = document.createElement(REVELATION_FIELD);
+        field.setAttribute(REVELATION_FIELD_ID, revelationEntry.fields[revelationField].id.replace('_', '-'));
+        field.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.fields[revelationField].value);
+        entry.appendChild(field);
+      }
     }
 
     if (revelationEntry.children) {
@@ -208,18 +219,9 @@ export class Xml04xService {
     return entry;
   }
 
-  private static escapeXmlSpecialChars(content: string) {
-    return content ? content
-      .replace('<', '&lt;')
-      .replace('>', '&gt;')
-      .replace('&', '&amp;')
-      .replace("'", '&apos;')
-      .replace('"', '&quot;') : content;
-  }
-
   private xml2HTMLCollection(xmlContent: string): HTMLCollection {
     if (xmlContent) {
-      const xmlDocument = new DOMParser().parseFromString(xmlContent, "text/xml");;
+      const xmlDocument = new DOMParser().parseFromString(xmlContent, 'text/xml');
 
       if (xmlDocument.getRootNode().hasChildNodes()) {
 
@@ -239,14 +241,12 @@ export class Xml04xService {
       const notes = this.getByName(element, RawFieldType.NOTES);
       const updated = this.getByName(element, RawFieldType.UPDATED);
       const fields = this.getFields(element);
-      const level = 0;
+      level = level ?? 0;
       const expandable = false;
       const children = [];
       const entryElements = this.getEntryChildren(element);
       if (entryElements && entryElements.length > 0) {
-        for (let i = 0; i < entryElements.length; i++) {
-          children.push(this.getEntries(entryElements[i], level + 1));
-        }
+        entryElements.forEach(entryElement => children.push(this.getEntries(entryElement, level + 1)));
       }
 
       return {
@@ -260,10 +260,11 @@ export class Xml04xService {
    */
   private getEntryChildren(element: Element): Element[] {
     const children = [];
-    for(let i = 0; i < element.childNodes.length; i++) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < element.childNodes.length; i++) {
       const node = element.childNodes[i];
       if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === 'entry') {
-        children.push(node)
+        children.push(node);
       }
     }
     return children;
@@ -271,8 +272,10 @@ export class Xml04xService {
 
   private addPadding(a: Uint8Array): Uint8Array {
     let padlen = (16 - (a.byteLength % 16));
-    if (padlen == 0)
+    // tslint:disable-next-line: triple-equals
+    if (padlen == 0) {
       padlen = 16;
+    }
 
     const padlenArray = [...Array(padlen).keys()].map(() => padlen);
     return ConverterUtils.concatTypedArrays(a, padlenArray);
@@ -284,7 +287,7 @@ export class Xml04xService {
   private getByName(element: Element, name: string) {
     const e = element.getElementsByTagName(name);
     if (e && e.length > 0 && e[0].textContent) {
-      return e[0].textContent
+      return e[0].textContent;
     }
   }
 
@@ -301,7 +304,7 @@ export class Xml04xService {
           id: RawFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
           key: HumanizedFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
           value: child.textContent
-        }
+        };
       }
     });
 

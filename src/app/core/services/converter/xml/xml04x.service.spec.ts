@@ -6,7 +6,7 @@ describe('XmlService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: Xml04xService = TestBed.get(Xml04xService);
+    const service: Xml04xService = TestBed.inject(Xml04xService);
     expect(service).toBeTruthy();
   });
 });
