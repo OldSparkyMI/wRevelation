@@ -11,7 +11,7 @@ import { Entry } from '../../interfaces/wRevelation.interface';
 export class RevelationDataService {
 
   static SAVE_OPTIONS = {
-    type: 'saveFile',
+    type: 'save-file',
     accepts: [{
       description: 'wRevelation file',
       extensions: ['rvl'],
@@ -63,11 +63,11 @@ export class RevelationDataService {
           if (NativeFileSystemApi.hasNativeFS) {
             // native file system download
             // Create a writer (request permission if necessary).
-            const writer = await file.createWriter();
+            const writable = await file.createWritable();
             // Make sure we start with an empty file
-            await writer.truncate(0);
-            await writer.write(0, content);
-            await writer.close();
+            await writable.truncate(0);
+            await writable.write(content);
+            await writable.close();
           } else {
             // legacy download
             throw Error('Not implemented');
