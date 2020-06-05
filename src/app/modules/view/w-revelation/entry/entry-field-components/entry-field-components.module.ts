@@ -27,6 +27,7 @@ import { EntryFieldDatabaseComponent } from './entry-field-database/entry-field-
 import { EntryFieldLocationComponent } from './entry-field-location/entry-field-location.component';
 import { EntryFieldCodeComponent } from './entry-field-code/entry-field-code.component';
 import { EntryFieldPortComponent } from './entry-field-port/entry-field-port.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { EntryFieldPortComponent } from './entry-field-port/entry-field-port.com
     ReactiveFormsModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule
   ],
   exports: [
     EntryFieldUrlComponent,

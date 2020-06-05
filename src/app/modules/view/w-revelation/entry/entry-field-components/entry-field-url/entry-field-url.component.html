@@ -1,4 +1,7 @@
 <mat-form-field class="full-width">
-    <mat-label>URL</mat-label>
-    <input matInput placeholder="https://www.example.com" [formControl]="formControl">
+  <mat-label>URL</mat-label>
+  <input matInput placeholder="https://www.example.com" [formControl]="formControl">
+  <a matSuffix mat-icon-button [href]="formControl.value" aria-label="open URL" title="open URL" target="_blank">
+    <mat-icon>open_in_new</mat-icon>
+  </a>
 </mat-form-field>
