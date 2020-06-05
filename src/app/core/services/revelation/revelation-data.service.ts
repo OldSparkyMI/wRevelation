@@ -4,6 +4,7 @@ import { Xml04xService } from '../converter/xml/xml04x.service';
 import { NativeFileSystemApi } from '../../utils/native-file-system-api.utils';
 import { take } from 'rxjs/operators';
 import { Entry } from '../../interfaces/wRevelation.interface';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +71,7 @@ export class RevelationDataService {
             await writable.close();
           } else {
             // legacy download
-            throw Error('Not implemented');
+            saveAs(new Blob([content]), file.name);
           }
         });
     } catch (e) {

@@ -8,6 +8,17 @@ Try it out under: https://oldsparkymi.github.io/wRevelation/
 
 The project is currently in *pre alpha state*. Always backup your revelation files before trying wRevelation!
 
+### Native File API Support (Chrome >= 83)
+  - open file
+  - save file
+  - save file as
+  - modifiy file
+
+### Legacy Download (Firefox, Internet Explorer)
+  - open file
+  - download file
+  - modifiy file
+
 ## Angular Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.

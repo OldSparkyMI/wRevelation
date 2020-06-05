@@ -17,6 +17,11 @@ export class MenuComponent {
    */
   private fileHandle;
 
+  /**
+   * If the browser does not support natife file apie, store the file here to download an preset the filename!
+   */
+  private file;
+
   /** check if browser supports native file api */
   hasNativeFS = NativeFileSystemApi.hasNativeFS;
 
@@ -64,6 +69,7 @@ export class MenuComponent {
    */
   openLegacy(fileInput) {
     if (fileInput.files[0]) {
+      this.file = fileInput.files[0];
       this.fileOpen.emit(fileInput.files[0]);
     }
   }
@@ -76,8 +82,13 @@ export class MenuComponent {
    */
   save() {
     if (this.fileHandle) {
+      // opened via native file api
       this.fileSave.next(this.fileHandle);
+    } else if (this.file) {
+      // opened via fileinput
+      this.fileSave.next(this.file);
     } else {
+      // nothing opened, everrything is new
       this.saveAs();
     }
   }
@@ -92,7 +103,8 @@ export class MenuComponent {
     if (NativeFileSystemApi.hasNativeFS) {
       (window as any).chooseFileSystemEntries(RevelationDataService.SAVE_OPTIONS).then(fileHandle => this.fileSave.next(fileHandle));
     } else {
-      this.fileSave.next(null);
+      alert('NOT IMPLEMENTED - only available with Native File Api Support (Chromium/Chrome 83 or higher)');
+      // this.fileSave.next(null);
     }
   }
 
