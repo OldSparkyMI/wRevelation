@@ -1,22 +1,31 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="start stretch" style="scroll-behavior: smooth;">
-  <wrevelation-menu (fileOpen)="onFileOpen($event)" (fileSave)="onFileSave($event)" [saveSupport]="((entries$ | async) || []).length"></wrevelation-menu>
+  <wrevelation-menu (fileOpen)="onFileOpen($event)" (fileSave)="onFileSave($event)"
+    [saveSupport]="((entries$ | async) || []).length" (addEntry)="onAddEntry($event)">
+  </wrevelation-menu>
   <div fxLayout="row">
-      <wrevelation-entries [entries]="entries$ | async" (activeEntry)="onActiveEntry($event)" fxFlex="50%"></wrevelation-entries>
-      <wrevelation-entry fxFlex="50%" [entry]="activeEntry"></wrevelation-entry>
+    <wrevelation-entries [entries]="entries$ | async" (activeEntry)="onActiveEntry($event)" fxFlex="50%">
+    </wrevelation-entries>
+    <div style="position: relative; width: 100%">
+      <button *ngIf="activeEntry" (click)="onActiveEntry(null)" style="position: fixed; z-index: 5; right: 0px" mat-icon-button aria-label="Close active entry">
+        <mat-icon>close</mat-icon>
+      </button>
+      <wrevelation-entry style="position: fixed; width: 50%; padding-inline-end: 1em;"
+        [entry]="activeEntry"></wrevelation-entry>
+    </div>
   </div>
   <mat-accordion [fxHide]="hasNativeFS" style="margin-top:auto;" (click)="scrollToBottom()">
-      <mat-expansion-panel>
-          <mat-expansion-panel-header>
-              <mat-panel-title color="warn">
-                  Native File System API not available
-              </mat-panel-title>
-              <mat-panel-description>
-                  <mat-icon>info</mat-icon>
-              </mat-panel-description>
-          </mat-expansion-panel-header>
-          The Native File System API is not supported in this browser yet, and wRevelation is running in legacy
-          mode. In legacy mode, saving changes is only possible via download. If you're running Chrome, you can
-          enable the Native File System APIs by enabling the #native-file-system-api flag in chrome://flags.
-      </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title color="warn">
+          Native File System API not available
+        </mat-panel-title>
+        <mat-panel-description>
+          <mat-icon>info</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      The Native File System API is not supported in this browser yet, and wRevelation is running in legacy
+      mode. In legacy mode, saving changes is only possible via download. If you're running Chrome, you can
+      enable the Native File System APIs by enabling the #native-file-system-api flag in chrome://flags.
+    </mat-expansion-panel>
   </mat-accordion>
 </div>

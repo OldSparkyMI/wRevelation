@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as pako from 'pako';
 import { EntryType, HumanizedFieldType, RawFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { Entry, EntryField } from 'src/app/core/interfaces/wRevelation.interface';
+import { EntryService } from 'src/app/modules/view/w-revelation/entry/entry.service';
 import { ConverterUtils } from '../../../utils/converter.utils';
 import { Cryptographer047Service } from '../../cryptographer/cryptographer047.service';
 import { REVELATION_ATTRIBUTE_TYPE, REVELATION_DATA, REVELATION_DATA_VERSION, REVELATION_ENTRY, REVELATION_FIELD, REVELATION_FIELD_ID, REVELATION_VERSION } from './xml04x.const';
@@ -41,6 +42,7 @@ export class Xml04xService {
 
   constructor(
     private cryptographer047Service: Cryptographer047Service,
+    private entryService: EntryService
   ) { }
 
   async encrypt(revelationEntries: Entry[], password: string) {
@@ -144,42 +146,6 @@ export class Xml04xService {
   }
 
   /**
-   * Returns the icon for the given entry type
-   */
-  getIcon(entryType: EntryType) {
-    switch (entryType) {
-      case EntryType.FOLDER:
-        return 'folder';
-      case EntryType.GENERIC:
-        return 'description';
-      case EntryType.WEBSITE:
-        return 'web';
-      case EntryType.PHONE:
-        return 'smartphone';
-      case EntryType.CRYPTOKEY:
-        return 'vpn_key';
-      case EntryType.EMAIL:
-        return 'email';
-      case EntryType.CREDITCARD:
-        return 'credit_card';
-      case EntryType.SHELL:
-        return 'computer';
-      case EntryType.DOOR:
-        return 'lock';
-      case EntryType.DATABASE:
-        return 'storage';
-      case EntryType.FTP:
-        return 'folder_special';
-      case EntryType.VNC:
-        return 'desktop_windows';
-      case EntryType.REMOTEDESKTOP:
-        return 'desktop_mac';
-      default:
-        console.warn('getIcon: Unkown entry type', entryType);
-    }
-  }
-
-  /**
    * Converts a RevelationEntry into xml
    */
   private revelationEntry2Xml(revelationEntry: Entry): Element {
@@ -234,24 +200,19 @@ export class Xml04xService {
 
   private getEntries(element: Element, level: number): Entry {
     if (element && element.hasChildNodes()) {
-      const type = EntryType[element.getAttribute(REVELATION_ATTRIBUTE_TYPE).toLocaleUpperCase()];
-      const icon = this.getIcon(type);
-      const name = this.getByName(element, RawFieldType.NAME);
-      const description = this.getByName(element, RawFieldType.DESCRIPTION);
-      const notes = this.getByName(element, RawFieldType.NOTES);
-      const updated = this.getByName(element, RawFieldType.UPDATED);
-      const fields = this.getFields(element);
-      level = level ?? 0;
-      const expandable = false;
-      const children = [];
+      const newEntry = this.entryService.getEmptyEntry(EntryType[element.getAttribute(REVELATION_ATTRIBUTE_TYPE).toLocaleUpperCase()]);
+      newEntry.name = this.getByName(element, RawFieldType.NAME);
+      newEntry.description = this.getByName(element, RawFieldType.DESCRIPTION);
+      newEntry.notes = this.getByName(element, RawFieldType.NOTES);
+      newEntry.updated = this.getByName(element, RawFieldType.UPDATED);
+      newEntry.fields = this.getFields(element);
+      newEntry.level = level ?? 0;
       const entryElements = this.getEntryChildren(element);
       if (entryElements && entryElements.length > 0) {
-        entryElements.forEach(entryElement => children.push(this.getEntries(entryElement, level + 1)));
+        entryElements.forEach(entryElement => newEntry.children.push(this.getEntries(entryElement, level + 1)));
       }
 
-      return {
-        name, type, icon, description, notes, updated, fields, children, level, expandable
-      } as Entry;
+      return newEntry;
     }
   }
 

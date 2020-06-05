@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <wrevelation-entry [entry]="entry">
+  </wrevelation-entry>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="entry" [disabled]="!entry.name">Ok</button>
+</div>

@@ -10,6 +10,7 @@ import { WRevelationComponent } from './w-revelation/w-revelation.component';
 import { EntriesComponent } from './w-revelation/entries/entries.component';
 import { EntryComponent } from './w-revelation/entry/entry.component';
 import { EntryFieldComponentsModule } from './w-revelation/entry/entry-field-components/entry-field-components.module';
+import { NewEntryDialogComponent } from './w-revelation/entry/new-entry-dialog/new-entry-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EntryFieldComponentsModule } from './w-revelation/entry/entry-field-com
     MenuComponent,
     OpenPasswordDialogComponent,
     EntriesComponent,
-    EntryComponent
+    EntryComponent,
+    NewEntryDialogComponent
   ],
   entryComponents: [
     OpenPasswordDialogComponent

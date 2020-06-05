@@ -27,10 +27,10 @@
       <mat-icon class="textAfterIcon">save_alt</mat-icon> <span fxHide.lt-md
         fxShow.xs>{{hasNativeFS ? 'save as' : 'download as'}}</span>
     </button>
-    <button mat-button title="add entry" disabled>
+    <button mat-button title="add entry" [matMenuTriggerFor]="addEntryMenu">
       <mat-icon class="textAfterIcon">add_circle_outline</mat-icon> <span fxHide.lt-md fxShow.xs>add entry</span>
     </button>
-    <button mat-button title="add folder" disabled>
+    <button mat-button title="add folder" (click)="addEntry.next(EntryType.FOLDER)">
       <mat-icon class="textAfterIcon">folder</mat-icon> <span fxHide.lt-md fxShow.xs>add folder</span>
     </button>
     <button mat-button title="delete entry" disabled>
@@ -38,3 +38,8 @@
     </button>
   </div>
 </ng-template>
+
+<mat-menu #addEntryMenu="matMenu">
+  <button *ngFor="let entryType of EntryType | keyvalue" mat-menu-item style="text-transform: capitalize"
+    (click)="addEntry.next(entryType.value)">{{entryType.value}}</button>
+</mat-menu>

@@ -7,7 +7,9 @@ export interface Entry {
   description: string;
   notes: string;
   updated: string;
-  fields: {}; // the whole content should be a instanceof EntryField
+  // for every key the value have to be an instance of EntryField
+  fields: {};
+  parent: Entry;
 
   /**
    * Needed for MatTreeView

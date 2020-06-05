@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Ou
 import { MatInput } from '@angular/material/input';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
+import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 
 @Component({
   selector: 'wrevelation-menu',
@@ -26,6 +27,11 @@ export class MenuComponent {
   hasNativeFS = NativeFileSystemApi.hasNativeFS;
 
   /**
+   * For the HTML template and addEntry
+   */
+  EntryType = EntryType;
+
+  /**
    * If enabled, the save and save as button are clickable
    */
   @Input() saveSupport = false;
@@ -39,6 +45,11 @@ export class MenuComponent {
    * Emits the file from the file save | save as event -> if the user clicked on "save" or "save as"
    */
   @Output() fileSave: EventEmitter<any> = new EventEmitter();  // File | FileHandle
+
+  /**
+   * The signal that the user likes to create an new item
+   */
+  @Output() addEntry: EventEmitter<EntryType> = new EventEmitter();
 
   /** the <input type="file" element from the menu-raw.component.html file */
   @ViewChild('fileInput') fileInputElement: ElementRef<MatInput>;

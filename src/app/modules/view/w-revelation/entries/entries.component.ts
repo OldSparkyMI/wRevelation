@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
+import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 
 @Component({
   selector: 'wrevelation-entries',
@@ -52,7 +53,6 @@ export class EntriesComponent {
   /** Transform the data to something the tree can read. */
   private transformer(node: Entry, level: number): Entry {
     node.level = level;
-    node.expandable = node.children.length > 0;
     return node;
   }
 
