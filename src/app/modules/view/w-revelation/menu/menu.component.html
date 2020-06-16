@@ -12,31 +12,43 @@
 
 <!-- The whole menu -->
 <ng-template #menu let-flowOrder>
-  <div [fxLayout]="flowOrder" fxLayoutAlign="start start">
-    <input #fileInput name="file" (change)="openLegacy(fileInput)" type="file" fxHide>
-    <button mat-button (click)="open()" title="open file">
-      <mat-icon class="textAfterIcon">folder_open</mat-icon> <span fxHide.lt-md fxShow.xs>open</span>
-    </button>
-    <button mat-button (click)="save()" [title]="(hasNativeFS ? 'save' : 'download') + ' file'"
-      [disabled]="!saveSupport">
-      <mat-icon class="textAfterIcon">save as</mat-icon> <span fxHide.lt-md
-        fxShow.xs>{{hasNativeFS ? 'save' : 'download'}}</span>
-    </button>
-    <button mat-button (click)="saveAs()" [title]="(hasNativeFS ? 'save' : 'download') + ' file as'"
-      [disabled]="!saveSupport">
-      <mat-icon class="textAfterIcon">save_alt</mat-icon> <span fxHide.lt-md
-        fxShow.xs>{{hasNativeFS ? 'save as' : 'download as'}}</span>
-    </button>
-    <button mat-button title="add entry" [matMenuTriggerFor]="addEntryMenu">
-      <mat-icon class="textAfterIcon">add_circle_outline</mat-icon> <span fxHide.lt-md fxShow.xs>add entry</span>
-    </button>
-    <button mat-button title="add folder" (click)="addEntry.next(EntryType.FOLDER)">
-      <mat-icon class="textAfterIcon">folder</mat-icon> <span fxHide.lt-md fxShow.xs>add folder</span>
-    </button>
-    <button mat-button title="delete entry" disabled>
-      <mat-icon class="textAfterIcon">delete</mat-icon> <span fxHide.lt-md fxShow.xs>delete entry</span>
-    </button>
-  </div>
+  <mat-action-list [fxLayout]="flowOrder" fxLayoutAlign="start start" style="padding: 0px">
+    <div mat-list-item class="full-width">
+      <input #fileInput name="file" (change)="openLegacy(fileInput)" type="file" fxHide>
+      <button mat-button (click)="open()" title="open file">
+        <mat-icon class="textAfterIcon">folder_open</mat-icon> <span fxHide.lt-md fxShow.xs>open</span>
+      </button>
+    </div>
+    <div mat-list-item class="full-width">
+      <button mat-button (click)="save()" [title]="(hasNativeFS ? 'save' : 'download') + ' file'"
+        [disabled]="!saveSupport">
+        <mat-icon class="textAfterIcon">save as</mat-icon> <span fxHide.lt-md
+          fxShow.xs>{{hasNativeFS ? 'save' : 'download'}}</span>
+      </button>
+    </div>
+    <div mat-list-item class="full-width">
+      <button mat-button (click)="saveAs()" [title]="(hasNativeFS ? 'save' : 'download') + ' file as'"
+        [disabled]="!saveSupport">
+        <mat-icon class="textAfterIcon">save_alt</mat-icon> <span fxHide.lt-md
+          fxShow.xs>{{hasNativeFS ? 'save as' : 'download as'}}</span>
+      </button>
+    </div>
+    <div mat-list-item class="full-width">
+      <button mat-button title="add entry" [matMenuTriggerFor]="addEntryMenu">
+        <mat-icon class="textAfterIcon">add_circle_outline</mat-icon> <span fxHide.lt-md fxShow.xs>add entry</span>
+      </button>
+    </div>
+    <div mat-list-item class="full-width">
+      <button mat-button title="add folder" (click)="addEntry.next(EntryType.FOLDER)">
+        <mat-icon class="textAfterIcon">folder</mat-icon> <span fxHide.lt-md fxShow.xs>add folder</span>
+      </button>
+    </div>
+    <div mat-list-item class="full-width">
+      <button mat-button title="delete entry" disabled>
+        <mat-icon class="textAfterIcon">delete</mat-icon> <span fxHide.lt-md fxShow.xs>delete entry</span>
+      </button>
+    </div>
+  </mat-action-list>
 </ng-template>
 
 <mat-menu #addEntryMenu="matMenu">
