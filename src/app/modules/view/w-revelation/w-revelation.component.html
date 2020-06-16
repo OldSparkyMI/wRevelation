@@ -4,17 +4,17 @@
   </wrevelation-menu>
   <div fxLayout="row">
     <!-- Entries Tree -->
-    <wrevelation-entries [entries]="entries$ | async" [(activeEntry)]="activeEntry" fxFlex="50%">
+    <wrevelation-entries [entries]="entries$ | async" [(activeEntry)]="activeEntry" fxFlex.gt-xs="50%" fxFlexFill.xs>
     </wrevelation-entries>
     <!-- // Entries Tree -->
 
     <!-- Entry Detail -->
-    <div style="position: relative; width: 100%">
-      <button *ngIf="activeEntry" (click)="activeEntry = null" style="position: fixed; z-index: 5; right: 0px" mat-icon-button aria-label="Close active entry">
+    <div fxFlex.gt-xs="50%" fxFlexFill.xs>
+      <button *ngIf="activeEntry" (click)="activeEntry = null" style="position: fixed; z-index: 5; right: 0px"
+        mat-icon-button aria-label="Close active entry">
         <mat-icon>close</mat-icon>
       </button>
-      <wrevelation-entry style="position: fixed; width: 50%; padding-inline-end: 1em;"
-        [entry]="activeEntry"></wrevelation-entry>
+      <wrevelation-entry *ngIf="activeEntry" [entry]="activeEntry" [ngClass.xs]="{'overlay': true}" fxFlexFill></wrevelation-entry>
     </div>
     <!-- //Entry Detail -->
   </div>
