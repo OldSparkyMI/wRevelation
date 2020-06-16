@@ -100,13 +100,9 @@ export class WRevelationComponent {
               shareReplay({ bufferSize: 1, refCount: true })
             );
           }
-          this.onActiveEntry(newEntry);
+          this.activeEntry = newEntry;
         });
     }
-  }
-
-  onActiveEntry(entry: Entry) {
-    this.activeEntry = entry;
   }
 
   scrollToBottom() {

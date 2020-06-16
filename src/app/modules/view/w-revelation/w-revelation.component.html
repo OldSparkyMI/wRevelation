@@ -3,16 +3,23 @@
     [saveSupport]="((entries$ | async) || []).length" (addEntry)="onAddEntry($event)">
   </wrevelation-menu>
   <div fxLayout="row">
-    <wrevelation-entries [entries]="entries$ | async" (activeEntry)="onActiveEntry($event)" fxFlex="50%">
+    <!-- Entries Tree -->
+    <wrevelation-entries [entries]="entries$ | async" [(activeEntry)]="activeEntry" fxFlex="50%">
     </wrevelation-entries>
+    <!-- // Entries Tree -->
+
+    <!-- Entry Detail -->
     <div style="position: relative; width: 100%">
-      <button *ngIf="activeEntry" (click)="onActiveEntry(null)" style="position: fixed; z-index: 5; right: 0px" mat-icon-button aria-label="Close active entry">
+      <button *ngIf="activeEntry" (click)="activeEntry = null" style="position: fixed; z-index: 5; right: 0px" mat-icon-button aria-label="Close active entry">
         <mat-icon>close</mat-icon>
       </button>
       <wrevelation-entry style="position: fixed; width: 50%; padding-inline-end: 1em;"
         [entry]="activeEntry"></wrevelation-entry>
     </div>
+    <!-- //Entry Detail -->
   </div>
+
+  <!-- Native File System API notification -->
   <mat-accordion [fxHide]="hasNativeFS" style="margin-top:auto;" (click)="scrollToBottom()">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -28,4 +35,5 @@
       enable the Native File System APIs by enabling the #native-file-system-api flag in chrome://flags.
     </mat-expansion-panel>
   </mat-accordion>
+  <!-- // Native File System API notification -->
 </div>

@@ -1,14 +1,19 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of } from 'rxjs';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
-import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 
 @Component({
   selector: 'wrevelation-entries',
   templateUrl: './entries.component.html',
   styleUrls: ['./entries.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => EntriesComponent),
+    multi: true
+  }]
 })
 export class EntriesComponent {
 
@@ -24,7 +29,8 @@ export class EntriesComponent {
     return this.dataSource.data;
   }
 
-  @Output() activeEntry: EventEmitter<Entry> = new EventEmitter<Entry>();
+  @Input() activeEntry: Entry;
+  @Output() activeEntryChange: EventEmitter<Entry> = new EventEmitter<Entry>();
 
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<Entry>;
@@ -46,8 +52,8 @@ export class EntriesComponent {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   }
 
-  onClick(activeEntry) {
-    this.activeEntry.next(activeEntry);
+  onNodeClick(activeEntry) {
+    this.activeEntryChange.next(activeEntry);
   }
 
   /** Transform the data to something the tree can read. */
