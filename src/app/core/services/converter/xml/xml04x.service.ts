@@ -48,10 +48,11 @@ export class Xml04xService {
   async encrypt(revelationEntries: Entry[], password: string) {
 
     // TODO: move to cryptographer047
-    // FIXME: auto generate salt
-    const salt = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    // FIXME: auto generate iv
-    const iv = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6]);
+    const salt = new Uint8Array(8);
+    crypto.getRandomValues(salt);
+    const iv = new Uint8Array(16);
+    crypto.getRandomValues(iv);
+
     const xml = this.convertRevelationEntries(
       Xml04xService.VERSION_STRING,
       Xml04xService.DATA_VERSION_STRING,
