@@ -1,6 +1,7 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="start stretch" style="scroll-behavior: smooth;">
   <wrevelation-menu (fileOpen)="onFileOpen($event)" (fileSave)="onFileSave($event)"
-    [saveSupport]="((entries$ | async) || []).length" (addEntry)="onAddEntry($event)">
+    [saveSupport]="((entries$ | async) || []).length" (addEntry)="onAddEntry($event)" [deleteSupport]="!!activeEntry"
+    (deleteEntry)="onDeleteEntry()">
   </wrevelation-menu>
   <div fxLayout="row">
     <!-- Entries Tree -->
@@ -14,7 +15,9 @@
         mat-icon-button aria-label="Close active entry">
         <mat-icon>close</mat-icon>
       </button>
-      <wrevelation-entry *ngIf="activeEntry" [entry]="activeEntry" [ngClass.xs]="{'overlay': true}" fxFlexFill></wrevelation-entry>
+      <wrevelation-entry *ngIf="activeEntry" [entry]="activeEntry" [ngClass.xs]="{'overlay': true}"
+        style="position: fixed; right: 0px; background: white;"
+        [ngStyle.xs]="{'width': '100%'}" [ngStyle.gt-xs]="{'width': '50%'}"></wrevelation-entry>
     </div>
     <!-- //Entry Detail -->
   </div>

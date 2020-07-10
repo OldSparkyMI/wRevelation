@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, of } from 'rxjs';
-import { catchError, filter, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
+import { environment } from 'src/environments/environment';
 import { OpenPasswordDialogComponent } from '../password/open-password-dialog/open-password-dialog.component';
 import { EntryService } from './entry/entry.service';
 import { NewEntryDialogComponent } from './entry/new-entry-dialog/new-entry-dialog.component';
@@ -27,11 +28,16 @@ export class WRevelationComponent {
   /** currently there is only one active entry possible */
   activeEntry: Entry;
 
+  @HostListener('document:keydown.esc', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.activeEntry = null;
+  }
+
   constructor(
     private dialog: MatDialog,
     private revelationDataService: RevelationDataService,
     private matSnackBar: MatSnackBar,
-    private entryService: EntryService
+    private entryService: EntryService,
   ) { }
 
   /**
@@ -91,16 +97,31 @@ export class WRevelationComponent {
             newEntry.parent = parent;
             // we add the new folder to the active entry
             parent.children.push(newEntry);
-            // because the MatTreeDataSource won't detect these changes, we have to recreate the whole entries to update it!
-            this.entries$ = this.entries$.pipe(map(entries => [...entries]));
-          } else {
-            // entry to root!
-            this.entries$ = this.entries$.pipe(
-              map(entries => [...entries, newEntry]),
-              shareReplay({ bufferSize: 1, refCount: true })
-            );
           }
+          this.entries$ = this.entryService.addEntry(this.entries$, newEntry);
           this.activeEntry = newEntry;
+        });
+    }
+  }
+
+  // TODO: how to integrate the matSnackBar with the undo button?
+  onDeleteEntry() {
+    if (this.activeEntry) {
+
+      const oldEntry = this.activeEntry;
+
+      this.entries$ = this.entryService.deleteEntry(this.entries$, this.activeEntry, environment.time.dismissedByActionTimeout).pipe(
+        tap(() => this.activeEntry = null),
+        shareReplay({ bufferSize: 1, refCount: true })
+      );
+
+      this.matSnackBar.open(`${oldEntry.name} deleted`, 'Restore', {
+        duration: environment.time.dismissedByActionTimeout ?? 10000,
+      })
+        .afterDismissed()
+        .pipe(filter(data => !!data.dismissedByAction))
+        .subscribe(() => {
+          setTimeout(() => this.entries$ = this.entryService.addEntry(this.entries$, oldEntry), 0);
         });
     }
   }

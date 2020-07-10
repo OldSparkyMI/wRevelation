@@ -51,6 +51,16 @@ export class MenuComponent {
    */
   @Output() addEntry: EventEmitter<EntryType> = new EventEmitter();
 
+  /**
+   * If enabled, the delete button are activated
+   */
+  @Input() deleteSupport = false;
+
+  /**
+   * Emitted event, when the active entry should be deleted!
+   */
+  @Output() deleteEntry: EventEmitter<void> = new EventEmitter();
+
   /** the <input type="file" element from the menu-raw.component.html file */
   @ViewChild('fileInput') fileInputElement: ElementRef<MatInput>;
 

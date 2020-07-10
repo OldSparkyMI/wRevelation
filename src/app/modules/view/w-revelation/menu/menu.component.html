@@ -44,7 +44,7 @@
       </button>
     </div>
     <div mat-list-item class="full-width">
-      <button mat-button title="delete entry" disabled>
+      <button mat-button title="delete entry" (click)="deleteEntry.next()" [disabled]="!deleteSupport">
         <mat-icon class="textAfterIcon">delete</mat-icon> <span fxHide.lt-md fxShow.xs>delete entry</span>
       </button>
     </div>

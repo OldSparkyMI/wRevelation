@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of } from 'rxjs';
@@ -15,7 +15,7 @@ import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
     multi: true
   }]
 })
-export class EntriesComponent {
+export class EntriesComponent implements OnChanges {
 
   @Input()
   set entries(entries: Entry[]) {
@@ -50,6 +50,16 @@ export class EntriesComponent {
 
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.activeEntry) {
+      // if the active entry is changed from the outside, expand it, if possible
+      const entry = changes.activeEntry.currentValue;
+      if (entry?.expandable) {
+        this.treeControl.expand(entry);
+      }
+    }
   }
 
   onNodeClick(activeEntry) {
