@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { HumanizedFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 
+@Directive()
 export abstract class AbstractComponent {
 
   humanizedFieldType = HumanizedFieldType;

@@ -1,9 +1,10 @@
-import { Output } from '@angular/core';
+import { Output, Directive } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HumanizedFieldType, RawFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 import { AbstractComponent } from './abstract.component';
 
+@Directive()
 export abstract class AbstractEntryDataFieldComponent extends AbstractComponent {
 
   protected abstract ID: RawFieldType;
