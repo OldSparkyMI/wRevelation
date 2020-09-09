@@ -9,6 +9,7 @@ import { RevelationDataService } from 'src/app/core/services/revelation/revelati
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
 import { environment } from 'src/environments/environment';
 import { OpenPasswordDialogComponent } from '../password/open-password-dialog/open-password-dialog.component';
+import { PasswordService } from '../password/password.service';
 import { EntryService } from './entry/entry.service';
 import { NewEntryDialogComponent } from './entry/new-entry-dialog/new-entry-dialog.component';
 
@@ -28,6 +29,9 @@ export class WRevelationComponent {
   /** currently there is only one active entry possible */
   activeEntry: Entry;
 
+  /** the hash of the current password */
+  passwordHash: string;
+
   @HostListener('document:keydown.esc', ['$event'])
   onKeydownHandler(event: KeyboardEvent) {
     this.activeEntry = null;
@@ -38,6 +42,7 @@ export class WRevelationComponent {
     private revelationDataService: RevelationDataService,
     private matSnackBar: MatSnackBar,
     private entryService: EntryService,
+    private passwordService: PasswordService
   ) { }
 
   /**
@@ -46,10 +51,11 @@ export class WRevelationComponent {
    * @param file File | FileHandle - the revelation file selected by the user (from the menu component)
    */
   onFileOpen(file) {
-    this.entries$ = this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'open', password: '' } })
+    this.entries$ = this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'open', password: '', hash: '' } })
       .afterClosed()
       .pipe(
         filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
+        tap(async passwordDialogData => this.passwordHash = await this.passwordService.hash(passwordDialogData.password)),
         switchMap(async passwordDialogData => await this.revelationDataService.open(file, passwordDialogData.password)),
         catchError(e => {
           this.matSnackBar.open('Can\'t decrypt file - invalid password or corrupt file?', null, { duration: 5000 });
@@ -65,7 +71,7 @@ export class WRevelationComponent {
    * But to encrypt we need the password, so retrieve it again!
    */
   onFileSave(file) {
-    this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'save', password: '' } })
+    this.dialog.open(OpenPasswordDialogComponent, { data: { mode: 'save', password: '', hash: this.passwordHash } })
       .afterClosed()
       .pipe(
         filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),

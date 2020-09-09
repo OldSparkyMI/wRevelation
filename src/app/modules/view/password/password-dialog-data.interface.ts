@@ -1,4 +1,5 @@
 export interface PasswordDialogData {
-  mode: 'open';
+  mode: 'open' | 'save';
   password: string;
+  hash: string;
 }
