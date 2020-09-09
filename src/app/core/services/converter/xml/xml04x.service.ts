@@ -31,13 +31,20 @@ export class Xml04xService {
 
   private textDecoder: TextDecoder = new TextDecoder('utf-8');
 
-  private static escapeXmlSpecialChars(content: string) {
-    return content ? content
-      .replace('<', '&lt;')
+  private static encodeXmlSpecialChars(content: string) {
+    return content?.replace('<', '&lt;')
       .replace('>', '&gt;')
       .replace('&', '&amp;')
       .replace('\'', '&apos;')
-      .replace('"', '&quot;') : content;
+      .replace('"', '&quot;');
+  }
+
+  private static decodeXmlSpecialChars(content: string) {
+    return content?.replace('&lt;', '<')
+      .replace('&gt;', '>')
+      .replace('&amp;', '&')
+      .replace('&apos;', '\'')
+      .replace('&quot;', '"');
   }
 
   constructor(
@@ -154,16 +161,16 @@ export class Xml04xService {
     entry.setAttribute(REVELATION_ATTRIBUTE_TYPE, revelationEntry.type);
 
     const name = document.createElement(RawFieldType.NAME);
-    name.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.name);
+    name.textContent = Xml04xService.encodeXmlSpecialChars(revelationEntry.name);
 
     const description = document.createElement(RawFieldType.DESCRIPTION);
-    description.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.description);
+    description.textContent = Xml04xService.encodeXmlSpecialChars(revelationEntry.description);
 
     const updated = document.createElement(RawFieldType.UPDATED);
     updated.textContent = revelationEntry.updated;
 
     const notes = document.createElement(RawFieldType.NOTES);
-    notes.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.notes);
+    notes.textContent = Xml04xService.encodeXmlSpecialChars(revelationEntry.notes);
 
     entry.appendChild(name);
     entry.appendChild(description);
@@ -174,7 +181,7 @@ export class Xml04xService {
       if (revelationField) {
         const field = document.createElement(REVELATION_FIELD);
         field.setAttribute(REVELATION_FIELD_ID, revelationEntry.fields[revelationField].id.replace('_', '-'));
-        field.textContent = Xml04xService.escapeXmlSpecialChars(revelationEntry.fields[revelationField].value);
+        field.textContent = Xml04xService.encodeXmlSpecialChars(revelationEntry.fields[revelationField].value);
         entry.appendChild(field);
       }
     }
@@ -202,9 +209,9 @@ export class Xml04xService {
   private getEntries(element: Element, level: number): Entry {
     if (element && element.hasChildNodes()) {
       const newEntry = this.entryService.getEmptyEntry(EntryType[element.getAttribute(REVELATION_ATTRIBUTE_TYPE).toLocaleUpperCase()]);
-      newEntry.name = this.getByName(element, RawFieldType.NAME);
-      newEntry.description = this.getByName(element, RawFieldType.DESCRIPTION);
-      newEntry.notes = this.getByName(element, RawFieldType.NOTES);
+      newEntry.name = Xml04xService.decodeXmlSpecialChars(this.getByName(element, RawFieldType.NAME));
+      newEntry.description = Xml04xService.decodeXmlSpecialChars(this.getByName(element, RawFieldType.DESCRIPTION));
+      newEntry.notes = Xml04xService.decodeXmlSpecialChars(this.getByName(element, RawFieldType.NOTES));
       newEntry.updated = this.getByName(element, RawFieldType.UPDATED);
       newEntry.fields = this.getFields(element);
       newEntry.level = level ?? 0;
@@ -265,7 +272,7 @@ export class Xml04xService {
         fields[child.getAttribute(REVELATION_FIELD_ID)] = {
           id: RawFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
           key: HumanizedFieldType[child.getAttribute(REVELATION_FIELD_ID).toUpperCase().replace('-', '_')],
-          value: child.textContent
+          value: Xml04xService.decodeXmlSpecialChars(child.textContent)
         };
       }
     });
