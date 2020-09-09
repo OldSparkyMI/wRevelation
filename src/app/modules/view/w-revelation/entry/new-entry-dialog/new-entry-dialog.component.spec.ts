@@ -1,23 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NewEntryDialogComponent } from './new-entry-dialog.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MaterialModule } from 'src/app/modules/angular-material/material.modules';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NewEntryDialogComponent } from './new-entry-dialog.component';
 
 describe('NewEntryDialogComponent', () => {
   let component: NewEntryDialogComponent;
   let fixture: ComponentFixture<NewEntryDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewEntryDialogComponent ],
+      declarations: [NewEntryDialogComponent],
       imports: [MaterialModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: [] }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

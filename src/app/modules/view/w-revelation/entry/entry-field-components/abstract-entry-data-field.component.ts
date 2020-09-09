@@ -5,6 +5,7 @@ import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 import { AbstractComponent } from './abstract.component';
 
 @Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class AbstractEntryDataFieldComponent extends AbstractComponent {
 
   protected abstract ID: RawFieldType;

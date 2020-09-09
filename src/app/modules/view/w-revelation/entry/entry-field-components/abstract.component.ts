@@ -5,6 +5,7 @@ import { HumanizedFieldType } from 'src/app/core/enums/wRevelation.enum';
 import { EntryField } from 'src/app/core/interfaces/wRevelation.interface';
 
 @Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class AbstractComponent {
 
   humanizedFieldType = HumanizedFieldType;
