@@ -1,0 +1,108 @@
+{
+  "configVersion": 1,
+  "timestamp": 1601582125680,
+  "index": "https://oldsparkymi.github.io/wRevelation/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://oldsparkymi.github.io/wRevelation/favicon.ico",
+        "https://oldsparkymi.github.io/wRevelation/index.html",
+        "https://oldsparkymi.github.io/wRevelation/main-es2015.b086bfebf8142e06dacb.js",
+        "https://oldsparkymi.github.io/wRevelation/main-es5.b086bfebf8142e06dacb.js",
+        "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest",
+        "https://oldsparkymi.github.io/wRevelation/polyfills-es2015.4eb191482be2254421ff.js",
+        "https://oldsparkymi.github.io/wRevelation/polyfills-es5.212e1daaa7ab7b9975d1.js",
+        "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js",
+        "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js",
+        "https://oldsparkymi.github.io/wRevelation/styles.52905a1964f48c80a2c2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://oldsparkymi.github.io/wRevelation/android-chrome-192x192.png",
+        "https://oldsparkymi.github.io/wRevelation/android-chrome-384x384.png",
+        "https://oldsparkymi.github.io/wRevelation/apple-touch-icon.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-128x128.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-144x144.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-152x152.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-192x192.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-384x384.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-512x512.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-72x72.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-96x96.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/raw/Applications-internet.svg",
+        "https://oldsparkymi.github.io/wRevelation/assets/raw/README.md",
+        "https://oldsparkymi.github.io/wRevelation/assets/raw/revelation.svg",
+        "https://oldsparkymi.github.io/wRevelation/assets/raw/wRevelation.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/raw/wRevelation.svg",
+        "https://oldsparkymi.github.io/wRevelation/favicon-16x16.png",
+        "https://oldsparkymi.github.io/wRevelation/favicon-32x32.png",
+        "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://oldsparkymi.github.io/wRevelation/android-chrome-192x192.png": "a7bb8e88ce2dbf6e977bebac267423feb49fa91e",
+    "https://oldsparkymi.github.io/wRevelation/android-chrome-384x384.png": "5797e57aa26870b93c39b4a24261de87b76c6a75",
+    "https://oldsparkymi.github.io/wRevelation/apple-touch-icon.png": "160c14b68607dc1775f2ed7577ad29827625cd22",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://oldsparkymi.github.io/wRevelation/assets/raw/Applications-internet.svg": "5c3c588efd1cb7d7da63c346826b1a64fded6dd8",
+    "https://oldsparkymi.github.io/wRevelation/assets/raw/README.md": "11ac459bc0a8c2832b51408c6eebc42ec9a86adf",
+    "https://oldsparkymi.github.io/wRevelation/assets/raw/revelation.svg": "3d304cecb3ae86fe0df3d645c9e6417b19e77b74",
+    "https://oldsparkymi.github.io/wRevelation/assets/raw/wRevelation.png": "faa1fd180048f1f7b5cbab95d036214509074839",
+    "https://oldsparkymi.github.io/wRevelation/assets/raw/wRevelation.svg": "14d9e642e003d16ae393b2397f81fcd030513e5c",
+    "https://oldsparkymi.github.io/wRevelation/favicon-16x16.png": "42cf6e87ba1430683b29cb27dc5dd125339c9656",
+    "https://oldsparkymi.github.io/wRevelation/favicon-32x32.png": "829bd2b5a1f912ae9b9b52926050375c9929c045",
+    "https://oldsparkymi.github.io/wRevelation/favicon.ico": "e5ed1f7eb0650a60d8c4b0176eb970116800c6e9",
+    "https://oldsparkymi.github.io/wRevelation/index.html": "db27916c356bd33c6d5064a0783c7d6b8ee9154f",
+    "https://oldsparkymi.github.io/wRevelation/main-es2015.b086bfebf8142e06dacb.js": "f1a1ccfb69f284f201259a8f141709ecd88b3c72",
+    "https://oldsparkymi.github.io/wRevelation/main-es5.b086bfebf8142e06dacb.js": "f30762fc0cca1429bbf0668a03d04ef88c174fcb",
+    "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest": "bf37b1105ccb185f04c8cbe5e6b952be3aca5d5b",
+    "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png": "03e606a272295bdd4add2c430dd3a6ff71c1f389",
+    "https://oldsparkymi.github.io/wRevelation/polyfills-es2015.4eb191482be2254421ff.js": "cad3129c71535baaab25ac06d8429734959b0b3f",
+    "https://oldsparkymi.github.io/wRevelation/polyfills-es5.212e1daaa7ab7b9975d1.js": "ddab36708d3bfe0102402cd9e170eb47c267b9f8",
+    "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://oldsparkymi.github.io/wRevelation/styles.52905a1964f48c80a2c2.css": "eeb68da8144cf2eb4af5957d6f4ef3137f5abc9a"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
