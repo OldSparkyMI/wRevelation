@@ -1,10 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
 
+/**
+ ____  _____  _  _  ____  ___ 
+( ___)(  _  )( \( )(_  _)/ __)
+ )__)  )(_)(  )  (   )(  \__ \
+(__)  (_____)(_)\_) (__) (___/
+http://patorjk.com/software/taag/#p=display&f=Bulbhead&t=FONTS 
+*/
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("assets/fonts/roboto-v20-latin-regular.woff2") format("woff2");
+  font-display: swap;
+}
+/* material-icon - regular */
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url("assets/fonts/material-icon-regular-v62.woff2") format("woff2");
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+/**
+ ___   ___  ___  ___ 
+/ __) / __)/ __)/ __)
+\__ \( (__ \__ \\__ \
+(___/ \___)(___/(___/
+http://patorjk.com/software/taag/#p=display&f=Bulbhead&t=SCSS
+*/
+
 $toolbar-height: 64px;
 $container-padding: 20px;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif, "Material Icons";
+}
 
 .full-width {
   width: 100%;
@@ -12,11 +75,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container-padding {
   padding: $container-padding;
-}
-
-// TODO: do not use this!
-.right {
-  text-align: right;
 }
 
 .textAfterIcon {
