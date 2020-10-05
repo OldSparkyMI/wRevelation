@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1601582830074,
+  "timestamp": 1601928935227,
   "index": "https://oldsparkymi.github.io/wRevelation/index.html",
   "assetGroups": [
     {
@@ -20,7 +20,7 @@
         "https://oldsparkymi.github.io/wRevelation/polyfills-es5.212e1daaa7ab7b9975d1.js",
         "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js",
         "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js",
-        "https://oldsparkymi.github.io/wRevelation/styles.52905a1964f48c80a2c2.css"
+        "https://oldsparkymi.github.io/wRevelation/styles.5fd631f852f9e5cdd085.css"
       ],
       "patterns": []
     },
@@ -35,6 +35,9 @@
         "https://oldsparkymi.github.io/wRevelation/android-chrome-192x192.png",
         "https://oldsparkymi.github.io/wRevelation/android-chrome-384x384.png",
         "https://oldsparkymi.github.io/wRevelation/apple-touch-icon.png",
+        "https://oldsparkymi.github.io/wRevelation/assets/fonts/MATERIAL_ICONS_DOWNLOAD.md",
+        "https://oldsparkymi.github.io/wRevelation/assets/fonts/material-icon-regular-v62.woff2",
+        "https://oldsparkymi.github.io/wRevelation/assets/fonts/roboto-v20-latin-regular.woff2",
         "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-128x128.png",
         "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-144x144.png",
         "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-152x152.png",
@@ -50,7 +53,9 @@
         "https://oldsparkymi.github.io/wRevelation/assets/raw/wRevelation.svg",
         "https://oldsparkymi.github.io/wRevelation/favicon-16x16.png",
         "https://oldsparkymi.github.io/wRevelation/favicon-32x32.png",
-        "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png"
+        "https://oldsparkymi.github.io/wRevelation/material-icon-regular-v62.0dedf7d12b1d99a0a9b8.woff2",
+        "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png",
+        "https://oldsparkymi.github.io/wRevelation/roboto-v20-latin-regular.176f8f5bd5f02b3abfcf.woff2"
       ],
       "patterns": []
     }
@@ -60,6 +65,9 @@
     "https://oldsparkymi.github.io/wRevelation/android-chrome-192x192.png": "a7bb8e88ce2dbf6e977bebac267423feb49fa91e",
     "https://oldsparkymi.github.io/wRevelation/android-chrome-384x384.png": "5797e57aa26870b93c39b4a24261de87b76c6a75",
     "https://oldsparkymi.github.io/wRevelation/apple-touch-icon.png": "160c14b68607dc1775f2ed7577ad29827625cd22",
+    "https://oldsparkymi.github.io/wRevelation/assets/fonts/MATERIAL_ICONS_DOWNLOAD.md": "efe4e07cd43849feb907e2da4b07707625d7d570",
+    "https://oldsparkymi.github.io/wRevelation/assets/fonts/material-icon-regular-v62.woff2": "c44c2272942a8bf5dd4ecdd925d1e56510ec7040",
+    "https://oldsparkymi.github.io/wRevelation/assets/fonts/roboto-v20-latin-regular.woff2": "81c796737cbe44d4a719777f0aff14b73a3efb1e",
     "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-128x128.png": "ad2686601306510bc8896cb480df73b1ccfb80ae",
     "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-144x144.png": "ccf0a4bd647758e45a063961bd9326aa6f3f5efd",
     "https://oldsparkymi.github.io/wRevelation/assets/icons/icon-152x152.png": "9f06a53cf2437a71bda29fb2def2eaaaed64094e",
@@ -76,16 +84,18 @@
     "https://oldsparkymi.github.io/wRevelation/favicon-16x16.png": "42cf6e87ba1430683b29cb27dc5dd125339c9656",
     "https://oldsparkymi.github.io/wRevelation/favicon-32x32.png": "829bd2b5a1f912ae9b9b52926050375c9929c045",
     "https://oldsparkymi.github.io/wRevelation/favicon.ico": "e5ed1f7eb0650a60d8c4b0176eb970116800c6e9",
-    "https://oldsparkymi.github.io/wRevelation/index.html": "db27916c356bd33c6d5064a0783c7d6b8ee9154f",
+    "https://oldsparkymi.github.io/wRevelation/index.html": "9214e8fedd751c799120e9e53e3656cd8d9b3c6e",
     "https://oldsparkymi.github.io/wRevelation/main-es2015.b086bfebf8142e06dacb.js": "f1a1ccfb69f284f201259a8f141709ecd88b3c72",
     "https://oldsparkymi.github.io/wRevelation/main-es5.b086bfebf8142e06dacb.js": "f30762fc0cca1429bbf0668a03d04ef88c174fcb",
-    "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest": "bf37b1105ccb185f04c8cbe5e6b952be3aca5d5b",
+    "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest": "c3ebe932fabb0d9665ea8cb160786fa89fb299a4",
+    "https://oldsparkymi.github.io/wRevelation/material-icon-regular-v62.0dedf7d12b1d99a0a9b8.woff2": "c44c2272942a8bf5dd4ecdd925d1e56510ec7040",
     "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png": "03e606a272295bdd4add2c430dd3a6ff71c1f389",
     "https://oldsparkymi.github.io/wRevelation/polyfills-es2015.4eb191482be2254421ff.js": "cad3129c71535baaab25ac06d8429734959b0b3f",
     "https://oldsparkymi.github.io/wRevelation/polyfills-es5.212e1daaa7ab7b9975d1.js": "ddab36708d3bfe0102402cd9e170eb47c267b9f8",
+    "https://oldsparkymi.github.io/wRevelation/roboto-v20-latin-regular.176f8f5bd5f02b3abfcf.woff2": "81c796737cbe44d4a719777f0aff14b73a3efb1e",
     "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "https://oldsparkymi.github.io/wRevelation/styles.52905a1964f48c80a2c2.css": "eeb68da8144cf2eb4af5957d6f4ef3137f5abc9a"
+    "https://oldsparkymi.github.io/wRevelation/styles.5fd631f852f9e5cdd085.css": "3ca2a1be0936770f1cb563df82fd12f4c46ea6f0"
   },
   "navigationUrls": [
     {
