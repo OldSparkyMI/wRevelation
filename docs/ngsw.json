@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1601928935227,
+  "timestamp": 1603131576220,
   "index": "https://oldsparkymi.github.io/wRevelation/index.html",
   "assetGroups": [
     {
@@ -13,14 +13,14 @@
       "urls": [
         "https://oldsparkymi.github.io/wRevelation/favicon.ico",
         "https://oldsparkymi.github.io/wRevelation/index.html",
-        "https://oldsparkymi.github.io/wRevelation/main-es2015.b086bfebf8142e06dacb.js",
-        "https://oldsparkymi.github.io/wRevelation/main-es5.b086bfebf8142e06dacb.js",
+        "https://oldsparkymi.github.io/wRevelation/main-es2015.957c2a5559293401d84e.js",
+        "https://oldsparkymi.github.io/wRevelation/main-es5.957c2a5559293401d84e.js",
         "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest",
         "https://oldsparkymi.github.io/wRevelation/polyfills-es2015.4eb191482be2254421ff.js",
         "https://oldsparkymi.github.io/wRevelation/polyfills-es5.212e1daaa7ab7b9975d1.js",
         "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js",
         "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js",
-        "https://oldsparkymi.github.io/wRevelation/styles.5fd631f852f9e5cdd085.css"
+        "https://oldsparkymi.github.io/wRevelation/styles.1276bdba7e630004f0e7.css"
       ],
       "patterns": []
     },
@@ -84,9 +84,9 @@
     "https://oldsparkymi.github.io/wRevelation/favicon-16x16.png": "42cf6e87ba1430683b29cb27dc5dd125339c9656",
     "https://oldsparkymi.github.io/wRevelation/favicon-32x32.png": "829bd2b5a1f912ae9b9b52926050375c9929c045",
     "https://oldsparkymi.github.io/wRevelation/favicon.ico": "e5ed1f7eb0650a60d8c4b0176eb970116800c6e9",
-    "https://oldsparkymi.github.io/wRevelation/index.html": "9214e8fedd751c799120e9e53e3656cd8d9b3c6e",
-    "https://oldsparkymi.github.io/wRevelation/main-es2015.b086bfebf8142e06dacb.js": "f1a1ccfb69f284f201259a8f141709ecd88b3c72",
-    "https://oldsparkymi.github.io/wRevelation/main-es5.b086bfebf8142e06dacb.js": "f30762fc0cca1429bbf0668a03d04ef88c174fcb",
+    "https://oldsparkymi.github.io/wRevelation/index.html": "1de014fd323a1d1517a3b5a3eef582e69c80db05",
+    "https://oldsparkymi.github.io/wRevelation/main-es2015.957c2a5559293401d84e.js": "af3ffa442f6ce9882514cbf666f8022f0b1a7668",
+    "https://oldsparkymi.github.io/wRevelation/main-es5.957c2a5559293401d84e.js": "973dcc0ec9c37b9d5d476a58acaf585c069f4048",
     "https://oldsparkymi.github.io/wRevelation/manifest.webmanifest": "c3ebe932fabb0d9665ea8cb160786fa89fb299a4",
     "https://oldsparkymi.github.io/wRevelation/material-icon-regular-v62.0dedf7d12b1d99a0a9b8.woff2": "c44c2272942a8bf5dd4ecdd925d1e56510ec7040",
     "https://oldsparkymi.github.io/wRevelation/mstile-150x150.png": "03e606a272295bdd4add2c430dd3a6ff71c1f389",
@@ -95,7 +95,7 @@
     "https://oldsparkymi.github.io/wRevelation/roboto-v20-latin-regular.176f8f5bd5f02b3abfcf.woff2": "81c796737cbe44d4a719777f0aff14b73a3efb1e",
     "https://oldsparkymi.github.io/wRevelation/runtime-es2015.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "https://oldsparkymi.github.io/wRevelation/runtime-es5.66c79b9d36e7169e27b0.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "https://oldsparkymi.github.io/wRevelation/styles.5fd631f852f9e5cdd085.css": "3ca2a1be0936770f1cb563df82fd12f4c46ea6f0"
+    "https://oldsparkymi.github.io/wRevelation/styles.1276bdba7e630004f0e7.css": "5ab251f854e16c57eef9f7cdc1576f61fe0b4b31"
   },
   "navigationUrls": [
     {
