@@ -1,9 +1,9 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="start stretch" style="scroll-behavior: smooth;">
   <wrevelation-menu (fileOpen)="onFileOpen($event)" (fileSave)="onFileSave($event)"
     [saveSupport]="((entries$ | async) || []).length" (addEntry)="onAddEntry($event)" [deleteSupport]="!!activeEntry"
-    (deleteEntry)="onDeleteEntry()">
+    (deleteEntry)="onDeleteEntry()" style="position: fixed; width: 100%; z-index: 10;">
   </wrevelation-menu>
-  <div fxLayout="row">
+  <div fxLayout="row" class="container">
     <!-- Entries Tree -->
     <wrevelation-entries [entries]="entries$ | async" [(activeEntry)]="activeEntry" fxFlex.gt-xs="50%" fxFlexFill.xs>
     </wrevelation-entries>

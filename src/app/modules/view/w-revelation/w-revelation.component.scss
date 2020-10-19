@@ -3,3 +3,15 @@
   left: 0px;
   background: white;
 }
+
+.container {
+  // mat toolbar small height
+  margin-block-start: 64px;
+}
+
+@media (max-width: 599px) {
+  .container {
+    // mat toolbar small height
+    margin-block-start: 56px;
+  }
+}

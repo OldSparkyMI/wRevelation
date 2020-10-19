@@ -57,9 +57,6 @@ http://patorjk.com/software/taag/#p=display&f=Bulbhead&t=FONTS
 http://patorjk.com/software/taag/#p=display&f=Bulbhead&t=SCSS
 */
 
-$toolbar-height: 64px;
-$container-padding: 20px;
-
 html,
 body {
   height: 100%;
@@ -71,10 +68,6 @@ body {
 
 .full-width {
   width: 100%;
-}
-
-.container-padding {
-  padding: $container-padding;
 }
 
 .textAfterIcon {
