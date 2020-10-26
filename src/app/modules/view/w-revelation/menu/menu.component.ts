@@ -79,6 +79,8 @@ export class MenuComponent {
       });
     } else {
       // open lagacy way via hidden: <input type="file" />
+      // but before reset the value so that the (change) will be executed even after selecting the same file again
+      (this.fileInputElement.nativeElement as any).value = null;
       (this.fileInputElement.nativeElement as any).click();
     }
   }
@@ -89,7 +91,7 @@ export class MenuComponent {
    * @param fileInput the html input element
    */
   openLegacy(fileInput) {
-    if (fileInput.files[0]) {
+    if (fileInput?.files[0]) {
       this.file = fileInput.files[0];
       this.fileOpen.emit(fileInput.files[0]);
     }
