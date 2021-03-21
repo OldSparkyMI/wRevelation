@@ -77,7 +77,7 @@ export class WRevelationComponent {
         filter(passwordDialogData => passwordDialogData && passwordDialogData.password && file),
         tap(passwordDialogData => this.revelationDataService.save(this.entries$, file, passwordDialogData.password)),
         catchError(e => {
-          this.matSnackBar.open('Can\'t save file - please raise an issue?', null, { duration: 5000 });
+          this.matSnackBar.open('Can\'t save file - please raise an issue!', null, { duration: 5000 });
           return EMPTY;
         })
       )

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
+import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
 import { NativeFileSystemApi } from 'src/app/core/utils/native-file-system-api.utils';
-import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 
 @Component({
   selector: 'wrevelation-menu',
@@ -63,6 +64,9 @@ export class MenuComponent {
 
   /** the <input type="file" element from the menu-raw.component.html file */
   @ViewChild('fileInput') fileInputElement: ElementRef<MatInput>;
+
+  constructor(private dialog: MatDialog) {
+  }
 
   /**
    * Opens a FileChooseDialog
@@ -126,9 +130,31 @@ export class MenuComponent {
     if (NativeFileSystemApi.hasNativeFS) {
       (window as any).chooseFileSystemEntries(RevelationDataService.SAVE_OPTIONS).then(fileHandle => this.fileSave.next(fileHandle));
     } else {
-      alert('NOT IMPLEMENTED - only available with Native File Api Support (Chromium/Chrome 83 or higher)');
-      // this.fileSave.next(null);
+      // ask for filename and download!
+      this.dialog.open(FilenameMenuDialogComponent, {data: ''}).afterClosed().subscribe(filename => {
+        this.fileSave.next(new File([], filename ? filename.indexOf('.') < 0 ? `${filename}.rvl` : filename : 'aRevelation.rvl'))
+      });
     }
   }
+}
 
+@Component({
+  selector: 'wrevelation-filename-menu-dialog',
+  template: `
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Filename</mat-label>
+      <input matInput [(ngModel)]="filename">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="filename">Ok</button>
+  </div>
+  `,
+})
+export class FilenameMenuDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<FilenameMenuDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public filename: string) { }
 }
