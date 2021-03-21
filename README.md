@@ -1,7 +1,5 @@
 # wRevelation
 
-In the current state of the projects files can only be opend in read only mode! Saving and adding will be implemented soon.
-
 Try it out under: https://oldsparkymi.github.io/wRevelation/
 
 ## current state
