@@ -30,19 +30,20 @@ export class Xml04xService {
   private static readonly XML_PROLOG = '<?xml version="1.0" encoding="utf-8" ?>';
 
   private textDecoder: TextDecoder = new TextDecoder('utf-8');
+  private textEncoder: TextEncoder = new TextEncoder();
 
   private static encodeXmlSpecialChars(content: string) {
-    return content?.replace('<', '&lt;')
+    return content?.replace('&', '&amp;')
+    .replace('<', '&lt;')
       .replace('>', '&gt;')
-      .replace('&', '&amp;')
       .replace('\'', '&apos;')
       .replace('"', '&quot;');
   }
 
   private static decodeXmlSpecialChars(content: string) {
-    return content?.replace('&lt;', '<')
+    return content?.replace('&amp;', '&')
+      .replace('&lt;', '<')
       .replace('&gt;', '>')
-      .replace('&amp;', '&')
       .replace('&apos;', '\'')
       .replace('&quot;', '"');
   }
@@ -65,8 +66,8 @@ export class Xml04xService {
       Xml04xService.DATA_VERSION_STRING,
       revelationEntries
     );
-
-    const zipContent = pako.deflate(xml, { to: Int8Array });
+    
+    const zipContent = pako.deflate(this.textEncoder.encode(xml), { to: Int8Array });
     const zipContentWithPad = this.addPadding(zipContent);
     const generatedSha256 = await ConverterUtils.createSha256Hash(zipContentWithPad);
     const encryptContent = new Uint8Array(await this.cryptographer047Service.encrypt(
@@ -94,7 +95,7 @@ export class Xml04xService {
       const generatedSha256 = await ConverterUtils.createSha256Hash(zipContent);
 
       if (ConverterUtils.compare(sha256, generatedSha256)) {
-        const xmlContent = String.fromCharCode.apply(null, pako.inflate(zipContent));
+        const xmlContent = this.textDecoder.decode(pako.inflate(zipContent));
 
         // provide data & metadata to the main application service
         const htmlCollection: HTMLCollection = this.xml2HTMLCollection(xmlContent);
