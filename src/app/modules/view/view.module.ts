@@ -13,31 +13,27 @@ import { FilenameMenuDialogComponent, MenuComponent } from './w-revelation/menu/
 import { WRevelationComponent } from './w-revelation/w-revelation.component';
 
 @NgModule({
-  declarations: [
-    WRevelationComponent,
-    MenuComponent,
-    OpenPasswordDialogComponent,
-    FilenameMenuDialogComponent,
-    EntriesComponent,
-    EntryComponent,
-    NewEntryDialogComponent
-  ],
-  entryComponents: [
-    OpenPasswordDialogComponent,
-    FilenameMenuDialogComponent,
-  ],
-  imports: [
-    CommonModule,
-    ViewRoutingModule,
-    FlexLayoutModule,
-    MaterialModule,
-    FormsModule,
-    EntryFieldComponentsModule
-  ],
-  exports: [
-    MenuComponent,
-    OpenPasswordDialogComponent,
-    EntriesComponent
-  ]
+    declarations: [
+        WRevelationComponent,
+        MenuComponent,
+        OpenPasswordDialogComponent,
+        FilenameMenuDialogComponent,
+        EntriesComponent,
+        EntryComponent,
+        NewEntryDialogComponent
+    ],
+    imports: [
+        CommonModule,
+        ViewRoutingModule,
+        FlexLayoutModule,
+        MaterialModule,
+        FormsModule,
+        EntryFieldComponentsModule
+    ],
+    exports: [
+        MenuComponent,
+        OpenPasswordDialogComponent,
+        EntriesComponent
+    ]
 })
 export class ViewModule { }
