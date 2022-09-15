@@ -17,10 +17,25 @@ import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 })
 export class EntriesComponent implements OnChanges {
 
+  /**
+   * SORT BY NAME
+   */
+  private static DEFAULT_SORTING = (a: Entry, b: Entry) => {
+    if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
+      return -1;
+    }
+    if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
+      return 1
+    }
+    return 0;
+  }
+
+  @Input() sorting: (a: Entry, b: Entry) => number;
+
   @Input()
   set entries(entries: Entry[]) {
     if (entries) {
-      this.dataSource.data = entries;
+      this.dataSource.data = entries.sort(this.sorting ?? EntriesComponent.DEFAULT_SORTING);
     } else {
       this.dataSource.data = [];
     }
@@ -89,11 +104,10 @@ export class EntriesComponent implements OnChanges {
 
   /** Get the children for the node. */
   private getChildren(node: Entry) {
-    return of(node.children);
+    return of(node.children.sort(this.sorting ?? EntriesComponent.DEFAULT_SORTING));
   }
 
   private getData(node: Entry) {
     return of(node);
   }
-
 }
