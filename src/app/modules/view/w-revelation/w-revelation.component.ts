@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, of } from 'rxjs';
-import { catchError, filter, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { EntryType } from 'src/app/core/enums/wRevelation.enum';
 import { Entry } from 'src/app/core/interfaces/wRevelation.interface';
 import { RevelationDataService } from 'src/app/core/services/revelation/revelation-data.service';
@@ -59,6 +59,7 @@ export class WRevelationComponent {
         switchMap(async passwordDialogData => await this.revelationDataService.open(file, passwordDialogData.password)),
         catchError(e => {
           this.matSnackBar.open('Can\'t decrypt file - invalid password or corrupt file?', null, { duration: 5000 });
+          this.onFileOpen(file);
           return EMPTY;
         }),
         shareReplay({ bufferSize: 1, refCount: true }),
