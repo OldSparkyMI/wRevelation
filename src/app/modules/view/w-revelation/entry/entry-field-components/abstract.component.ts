@@ -15,8 +15,10 @@ export abstract class AbstractComponent {
 
   @Input()
   set value(value: EntryField | string) {
-    if (value) {
-      this.formControl.setValue(typeof value === 'string' ? value : value.value, { emitEvent: false });
+    if (typeof value === 'string' || !value) {
+      this.formControl.setValue(value, { emitEvent: false });
+    } else {
+      this.formControl.setValue(value.value, { emitEvent: false });
     }
   }
   get value(): EntryField | string {
